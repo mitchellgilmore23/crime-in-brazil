@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
+const bs = require('bootstrap');
+const $ = require('jquery');
 
-// dark mode toggle
-var darkModeButton = '#darkMode';
+const darkModeButton = '#darkMode';
 $(darkModeButton).on('mouseenter', () => {
 	$(darkModeButton).removeClass('bg-dark').addClass('bg-success');
 });
@@ -12,36 +13,28 @@ $(darkModeButton).on('mouseleave', () => {
 $(darkModeButton).on('click', darkModeToggle);
 
 function darkModeToggle() {
-	// is document currently in dark mode?
-	var isInDarkMode = false;
-	if ($('[darkMode=bg]').hasClass('bg-dark')) {
-		isInDarkMode = true;
-	}
+	console.log($(darkModeButton).text());
 	// Document is not in dark mode, on click switch TO dark mode
-	if ($(darkModeButton).text() == 'Dark Mode' && !isInDarkMode) {
+	if ($(darkModeButton).text() == 'Dark Mode') {
 		$('[darkMode=bg]').addClass('bg-dark');
 		setTimeout(() => {
 			$('[darkMode=text]').addClass('text-bg-dark');
-			$(darkModeButton).text('Light Mode').removeClass('bg-dark');
+			$(darkModeButton).text('Light Mode'); //.removeClass('bg-dark');
 		}, 250);
 	}
 	// Document is in dark mode, switch TO light mode
-	if ($(darkModeButton).text() == 'Light Mode' && isInDarkMode) {
+	if ($(darkModeButton).text() == 'Light Mode') {
 		$('[darkMode=text]').removeClass('text-bg-dark');
 		setTimeout(() => {
 			$('[darkMode=bg]').removeClass('bg-dark');
-			$(darkModeButton).text('Dark Mode').addClass('bg-dark text-bg-dark');
+			$(darkModeButton).text('Dark Mode'); //.addClass('bg-dark text-bg-dark');
 		}, 250);
 	}
 }
 
-function languageChanger(whichlanguage) {
-	switch (whichlanguage) {
-		case 'en':
-			$('[lang=en]').removeAttr('hidden');
-			break;
-		case 'pr':
-			$('[lang=pr]').removeAttr('hidden');
-			break;
-	}
-}
+$('#corruption').on('click', () => {
+	console.error('Fuck you bitch');
+});
+
+// Below is link for JSON data of Corruption Index/Country
+// https://www.transparency.org/api/latest/cpi

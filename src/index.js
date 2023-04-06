@@ -1,5 +1,10 @@
 // console.log(123);
 
-const bs = require('bootstrap');
+const bootstrap = require('bootstrap');
 const $ = require('jquery');
 window.$ = $;
+const carousel = new bootstrap.Carousel('#landingPageCarousel', {
+	// ride: 'carousel',
+	pause: 'hover',
+	interval: 3500,
+});

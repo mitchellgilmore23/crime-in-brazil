@@ -1,9 +1,9 @@
 const bootstrap = require('bootstrap');
 const $ = require('jquery');
-import * as timeline from './landingtimeline';
-window.$ = $;
-import * as common from './common';
-$('#navbarInject').replaceWith(common.navbar);
+import * as Common from './common';
+console.log($('#darkMode'));
+
+$('#navbarInject').replaceWith(Common.navbar);
 
 const carousel = new bootstrap.Carousel('#landingPageCarousel', {
 	// ride: 'carousel',
@@ -16,9 +16,9 @@ const carousel = new bootstrap.Carousel('#landingPageCarousel', {
 // }, 10000);
 
 $(window).on('scroll', function () {
-	timeline.fnOnScroll();
+	Common.fnOnScroll();
 });
 
 $(window).on('resize', function () {
-	timeline.fnOnResize();
+	Common.fnOnResize();
 });

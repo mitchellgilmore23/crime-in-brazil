@@ -690,6 +690,17 @@ eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * jQ
 
 /***/ }),
 
+/***/ "./src/Income Inequality.js":
+/*!**********************************!*\
+  !*** ./src/Income Inequality.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _darkMode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./darkMode */ \"./src/darkMode.js\");\n/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common */ \"./src/common.js\");\nconst bootstrap = __webpack_require__(/*! bootstrap */ \"./node_modules/bootstrap/dist/js/bootstrap.esm.js\");\r\nconst $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\r\n\r\n\r\n\r\n$('#navbarInject').replaceWith(_common__WEBPACK_IMPORTED_MODULE_1__.navbar);\r\n$('#breadcrumbInject').replaceWith(_common__WEBPACK_IMPORTED_MODULE_1__.breadcrumb('Income Inequality'));\r\n$('#darkMode').on('click', _darkMode__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\r\n\n\n//# sourceURL=webpack://web-dev.-crime-in-brazil/./src/Income_Inequality.js?");
+
+/***/ }),
+
 /***/ "./src/common.js":
 /*!***********************!*\
   !*** ./src/common.js ***!
@@ -701,25 +712,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
+/***/ "./src/darkMode.js":
+/*!*************************!*\
+  !*** ./src/darkMode.js ***!
+  \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _landingtimeline__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./landingtimeline */ \"./src/landingtimeline.js\");\n/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common */ \"./src/common.js\");\nconst bootstrap = __webpack_require__(/*! bootstrap */ \"./node_modules/bootstrap/dist/js/bootstrap.esm.js\");\r\nconst $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\r\n\r\nwindow.$ = $;\r\n\r\n$('#navbarInject').replaceWith(_common__WEBPACK_IMPORTED_MODULE_1__.navbar);\r\n\r\nconst carousel = new bootstrap.Carousel('#landingPageCarousel', {\r\n\t// ride: 'carousel',\r\n\tpause: 'hover',\r\n\tinterval: 3500,\r\n});\r\n// const introToast = bootstrap.Toast.getOrCreateInstance($('#introToast'));\r\n// setTimeout(() => {\r\n// \tintroToast.show();\r\n// }, 10000);\r\n\r\n$(window).on('scroll', function () {\r\n\t_landingtimeline__WEBPACK_IMPORTED_MODULE_0__.fnOnScroll();\r\n});\r\n\r\n$(window).on('resize', function () {\r\n\t_landingtimeline__WEBPACK_IMPORTED_MODULE_0__.fnOnResize();\r\n});\r\n\n\n//# sourceURL=webpack://web-dev.-crime-in-brazil/./src/index.js?");
-
-/***/ }),
-
-/***/ "./src/landingtimeline.js":
-/*!********************************!*\
-  !*** ./src/landingtimeline.js ***!
-  \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"fnOnResize\": () => (/* binding */ fnOnResize),\n/* harmony export */   \"fnOnScroll\": () => (/* binding */ fnOnScroll),\n/* harmony export */   \"fnUpdateFrame\": () => (/* binding */ fnUpdateFrame),\n/* harmony export */   \"fnUpdateProgress\": () => (/* binding */ fnUpdateProgress),\n/* harmony export */   \"fnUpdateWindow\": () => (/* binding */ fnUpdateWindow)\n/* harmony export */ });\nconst $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\r\nvar agTimeline = $('.js-timeline'),\r\n\tagTimelineLine = $('.js-timeline_line'),\r\n\tagTimelineLineProgress = $('.js-timeline_line-progress'),\r\n\tagTimelinePoint = $('.js-timeline-card_point-box'),\r\n\tagTimelineItem = $('.js-timeline_item'),\r\n\tagOuterHeight = $(window).outerHeight(),\r\n\tagHeight = $(window).height(),\r\n\tf = -1,\r\n\tagFlag = false;\r\nvar agPosY = 0;\r\nfunction fnOnScroll() {\r\n\tagPosY = $(window).scrollTop();\r\n\r\n\tfnUpdateFrame();\r\n}\r\n\r\nfunction fnOnResize() {\r\n\tagPosY = $(window).scrollTop();\r\n\tagHeight = $(window).height();\r\n\r\n\tfnUpdateFrame();\r\n}\r\n\r\nfunction fnUpdateWindow() {\r\n\tagFlag = false;\r\n\r\n\tagTimelineLine.css({\r\n\t\ttop: agTimelineItem.first().find(agTimelinePoint).offset().top - agTimelineItem.first().offset().top,\r\n\t\tbottom: agTimeline.offset().top + agTimeline.outerHeight() - agTimelineItem.last().find(agTimelinePoint).offset().top,\r\n\t});\r\n\r\n\tf !== agPosY && ((f = agPosY), agHeight, fnUpdateProgress());\r\n}\r\n\r\nfunction fnUpdateProgress() {\r\n\tvar agTop = agTimelineItem.last().find(agTimelinePoint).offset().top;\r\n\r\n\tvar i = agTop + agPosY - $(window).scrollTop();\r\n\tvar a = agTimelineLineProgress.offset().top + agPosY - $(window).scrollTop();\r\n\tvar n = agPosY - a + agOuterHeight / 2;\r\n\ti <= agPosY + agOuterHeight / 2 && (n = i - a);\r\n\tagTimelineLineProgress.css({ height: n + 'px' });\r\n\r\n\tagTimelineItem.each(function () {\r\n\t\tvar agTop = $(this).find(agTimelinePoint).offset().top;\r\n\r\n\t\tagTop + agPosY - $(window).scrollTop() < agPosY + 0.5 * agOuterHeight ? $(this).addClass('js-ag-active') : $(this).removeClass('js-ag-active');\r\n\t});\r\n}\r\n\r\nfunction fnUpdateFrame() {\r\n\tagFlag || requestAnimationFrame(fnUpdateWindow);\r\n\tagFlag = true;\r\n}\r\n\n\n//# sourceURL=webpack://web-dev.-crime-in-brazil/./src/landingtimeline.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {\r\n\tconsole.error('hahahahahah loser');\r\n}\r\n\n\n//# sourceURL=webpack://web-dev.-crime-in-brazil/./src/darkMode.js?");
 
 /***/ })
 
@@ -783,7 +783,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/Income Inequality.js");
 /******/ 	
 /******/ })()
 ;

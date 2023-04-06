@@ -5,4 +5,4 @@ import darkMode from './darkMode';
 import * as common from './common';
 
 $('#navbarInject').replaceWith(common.navbar);
-$('#breadcrumbInject').replaceWith(common.breadcrumb('Violence In Brazil'));
+$('#breadcrumbInject').replaceWith(common.breadcrumb('Political Corruption'));

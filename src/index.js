@@ -4,6 +4,8 @@ const bootstrap = require('bootstrap');
 const $ = require('jquery');
 import * as timeline from './landingtimeline';
 window.$ = $;
+import * as common from './common';
+$('#navbarInject').replaceWith(common.navbar);
 const carousel = new bootstrap.Carousel('#landingPageCarousel', {
 	// ride: 'carousel',
 	pause: 'hover',

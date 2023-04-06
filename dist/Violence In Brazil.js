@@ -697,7 +697,7 @@ eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * jQ
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _breadcrumb__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./breadcrumb */ \"./src/breadcrumb.js\");\n/* harmony import */ var _breadcrumb__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_breadcrumb__WEBPACK_IMPORTED_MODULE_0__);\nconst bootstrap = __webpack_require__(/*! bootstrap */ \"./node_modules/bootstrap/dist/js/bootstrap.esm.js\");\r\nconst $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\r\n\r\n\n\n//# sourceURL=webpack://web-dev.-crime-in-brazil/./src/Violence_In_Brazil.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _breadcrumb__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./breadcrumb */ \"./src/breadcrumb.js\");\n/* harmony import */ var _breadcrumb__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_breadcrumb__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _darkMode__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./darkMode */ \"./src/darkMode.js\");\n/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./common */ \"./src/common.js\");\nconst bootstrap = __webpack_require__(/*! bootstrap */ \"./node_modules/bootstrap/dist/js/bootstrap.esm.js\");\r\nconst $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\r\n\r\n\r\n\r\n\r\n$('#navbarInject').replaceWith(_common__WEBPACK_IMPORTED_MODULE_2__.navbar);\r\n$('#breadcrumbInject').replaceWith(_common__WEBPACK_IMPORTED_MODULE_2__.breadcrumb('Violence In Brazil'));\r\n$('#darkMode').on('click', _darkMode__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\r\n\n\n//# sourceURL=webpack://web-dev.-crime-in-brazil/./src/Violence_In_Brazil.js?");
 
 /***/ }),
 
@@ -708,6 +708,28 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _bre
 /***/ (() => {
 
 eval("\r\n\n\n//# sourceURL=webpack://web-dev.-crime-in-brazil/./src/breadcrumb.js?");
+
+/***/ }),
+
+/***/ "./src/common.js":
+/*!***********************!*\
+  !*** ./src/common.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"breadcrumb\": () => (/* binding */ breadcrumb),\n/* harmony export */   \"navbar\": () => (/* binding */ navbar)\n/* harmony export */ });\nconst navbar = `\r\n<nav class=\"navbar navbar-expand-lg bg-light border border-2\">\r\n<div class=\"container-fluid\">\r\n\t<button class=\"navbar-toggler w-100\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n\t\t<span class=\"navbar-toggler-icon\"></span>\r\n\t</button>\r\n\t<div class=\"collapse navbar-collapse\" id=\"navbarText\">\r\n\t\t<ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link active\" href=\"index.html\">Home</a>\r\n\t\t\t</li>\r\n\t\t\t<div class=\"vr d-none d-lg-block\"></div>\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"./Violence In Brazil.html\">Violence</a>\r\n\t\t\t</li>\r\n\t\t\t<div class=\"vr d-none d-lg-block\"></div>\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"./Income Inequality.html\">Income Inequality</a>\r\n\t\t\t</li>\r\n\t\t\t<div class=\"vr d-none d-lg-block\"></div>\r\n\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"./Political Corruption.html\">Political Corruption</a>\r\n\t\t\t</li>\r\n\t\t\t<div class=\"vr d-none d-lg-block\"></div>\r\n\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"./Human Trafficking.html\">Human Trafficking</a>\r\n\t\t\t</li>\r\n\t\t\t<div class=\"vr d-none d-lg-block\"></div>\r\n\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"./Racism.html\">Racism</a>\r\n\t\t\t</li>\r\n\t\t</ul>\r\n\t\t<div class=\"hstack gap-3\">\r\n\t\t\t<a class=\"nav-link\">Light</a>\r\n\t\t\t<div class=\"form-switch\">\r\n\t\t\t\t<input type=\"checkbox\" class=\"form-check-input\" id=\"darkMode\" />\r\n\t\t\t</div>\r\n\t\t\t<a class=\"nav-link me-2\">Dark</a>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n</nav>\r\n\r\n\r\n\r\n`;\r\n\r\nfunction breadcrumb(activePage) {\r\n\treturn `\r\n\t<div class=\"container-fluid border border-1 pt-3\">\r\n\t<div class=\"container\">\r\n\t\t<nav style=\"--bs-breadcrumb-divider: '>'\" aria-label=\"breadcrumb\">\r\n\t\t\t<ol class=\"breadcrumb p-2\">\r\n\t\t\t\t<li class=\"breadcrumb-item\"><a href=\"index.html\">Home</a></li>\r\n\t\t\t\t<li class=\"breadcrumb-item active\">${activePage}</li>\r\n\t\t\t</ol>\r\n\t\t</nav>\r\n\t</div>\r\n</div>\r\n`;\r\n}\r\n\n\n//# sourceURL=webpack://web-dev.-crime-in-brazil/./src/common.js?");
+
+/***/ }),
+
+/***/ "./src/darkMode.js":
+/*!*************************!*\
+  !*** ./src/darkMode.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {\r\n\tconsole.error('hahahahahah loser');\r\n}\r\n\n\n//# sourceURL=webpack://web-dev.-crime-in-brazil/./src/darkMode.js?");
 
 /***/ })
 

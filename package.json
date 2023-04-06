@@ -2,25 +2,10 @@
 	"name": "web-dev.-crime-in-brazil",
 	"version": "1.0.0",
 	"description": "",
-	"main": "man.js",
-	"browserify": "npx",
+	"main": "index.html",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"keywords": [],
 	"author": "",
-	"license": "ISC",
-	"devDependencies": {
-		"eslint": "^8.36.0"
-	},
-	"dependencies": {
-		"@google-cloud/translate": "^7.2.0",
-		"bootstrap": "^5.2.3",
-		"dot-env": "^0.0.1",
-		"dotenv": "^16.0.3",
-		"exec": "^0.2.1",
-		"google-translate-api": "^2.3.0",
-		"jquery": "^3.6.4",
-		"request": "^2.88.2"
-	}
+	"license": "ISC"
 }

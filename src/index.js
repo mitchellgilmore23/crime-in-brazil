@@ -1,4 +1,4 @@
-console.log(123);
+// console.log(123);
 
 const bs = require('bootstrap');
 const $ = require('jquery');

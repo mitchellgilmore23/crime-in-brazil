@@ -1,6 +1,5 @@
 const $ = require('jquery');
-export function strToBool(str) {
-	console.log(str + ' == ' + typeof str);
+function strToBool(str) {
 	if (str === 'true') {
 		return true;
 	} else if (str == 'false') {
@@ -12,14 +11,15 @@ export function strToBool(str) {
 }
 
 export function darkModeHandler(onLoad, loadDarkMode, onClick, clickDarkMode) {
-	console.log(onClick, clickDarkMode);
 	if (onLoad) {
 		const cachedBool = strToBool(loadDarkMode);
 		if (cachedBool) {
+			console.log(`Local Storage/darkMode == ${cachedBool}.`);
 			$('#navbarInject').replaceWith(navbar(true));
 			$('[darkMode=bg]').addClass('bg-dark');
 			$('[darkMode=text]').addClass('text-light');
 		} else if (!cachedBool) {
+			console.log(`Local Storage/darkMode == ${cachedBool}.`);
 			$('#navbarInject').replaceWith(navbar(false));
 		} else {
 			console.error('ERROR: DarkModeHandler ELSE ON LOAD if statement.');
@@ -37,24 +37,9 @@ export function darkModeHandler(onLoad, loadDarkMode, onClick, clickDarkMode) {
 		} else {
 			console.error('ERROR: DarkModeHandler ELSE ON CLICK if statement.');
 		}
-	} else {
-		console.error("ERROR: DarkModeHandler ELSE ON PARENT IF's statement.");
 	}
 }
 
-export function darkMode(switchedToDark) {
-	if (switchedToDark) {
-		localStorage.setItem('darkMode', true);
-		$('[darkMode=bg]').addClass('bg-dark');
-		$('[darkMode=text]').addClass('text-light');
-	} else if (!switchedToDark) {
-		$('[darkMode=bg]').removeClass('bg-dark');
-		$('[darkMode=text]').removeClass('text-light');
-		localStorage.setItem('darkMode', false);
-	} else {
-		console.error('Dark Mode broken. Please email developers.');
-	}
-}
 export function navbar(dark) {
 	if (dark) {
 		return `
@@ -152,7 +137,7 @@ export function navbar(dark) {
 }
 
 export function breadcrumb(activePage, dark) {
-	if (dark) {
+	if (dark | (dark == 'true')) {
 		return `	<div class="container-fluid border border-1 pt-3">
 		<div class="container">
 			<nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">

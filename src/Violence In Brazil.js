@@ -1,14 +1,19 @@
 const bootstrap = require('bootstrap');
 const $ = require('jquery');
 import * as Common from './common';
-$(window).on('load resize scroll', i => {
-	if (i.type === 'load') {
-		Common.DarkModeHandler(true, localStorage.getItem('darkMode'));
-	}
-});
-cachedDarkMode ? Common.cachedDarkMode(true) : Common.cachedDarkMode(false);
+Common.darkModeHandler(true, localStorage.getItem('darkMode'));
+$('#darkMode').on('click', i => Common.darkModeHandler(null, null, true, i.currentTarget.checked));
+$('#breadcrumbInject').replaceWith(Common.breadcrumb('Violence In Brazil', localStorage.getItem('darkMode')));
 
-$('#navbarInject').replaceWith(Common.navbar(cachedDarkMode));
-$('#darkMode').on('click', i => Common.darkMode(i.currentTarget.checked));
-
-$('#breadcrumbInject').replaceWith(Common.breadcrumb('Violence In Brazil', cachedDarkMode));
+function jQ() {
+	$('.breadcrumb-item:before').css(`
+	.breadcrumb-item + .breadcrumb-item::before {
+    float: left;
+    padding-right: var(--bs-breadcrumb-item-padding-x);
+    color: rgb(255 255 255 / 75%);
+    content: var(--bs-breadcrumb-divider, "/") /* rtl: var(--bs-breadcrumb-divider, "/") */;
+}
+	`);
+}
+window.jQ = jQ;
+window.$ = $;

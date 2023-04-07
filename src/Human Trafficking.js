@@ -1,7 +1,6 @@
 const bootstrap = require('bootstrap');
 const $ = require('jquery');
 import * as Common from './common';
-
-$('#navbarInject').replaceWith(Common.navbar);
-$('#breadcrumbInject').replaceWith(Common.breadcrumb('Human Trafficking'));
-$('#darkMode').on('click', i => Common.darkMode(i.currentTarget.checked));
+Common.darkModeHandler(true, localStorage.getItem('darkMode'));
+$('#darkMode').on('click', i => Common.darkModeHandler(null, null, true, i.currentTarget.checked));
+$('#breadcrumbInject').replaceWith(Common.breadcrumb('Human Trafficking', localStorage.getItem('darkMode')));

@@ -1,5 +1,6 @@
 const $ = require('jquery');
 export function strToBool(str) {
+	console.log(str + ' == ' + typeof str);
 	if (str === 'true') {
 		return true;
 	} else if (str == 'false') {
@@ -10,10 +11,50 @@ export function strToBool(str) {
 	}
 }
 
-export function DarkModeHandler(onLoad, loadDarkMode, onClick, clickDarkMode) {
-	const cachedBool = strToBool(loadDarkMode);
+export function darkModeHandler(onLoad, loadDarkMode, onClick, clickDarkMode) {
+	console.log(onClick, clickDarkMode);
+	if (onLoad) {
+		const cachedBool = strToBool(loadDarkMode);
+		if (cachedBool) {
+			$('#navbarInject').replaceWith(navbar(true));
+			$('[darkMode=bg]').addClass('bg-dark');
+			$('[darkMode=text]').addClass('text-light');
+		} else if (!cachedBool) {
+			$('#navbarInject').replaceWith(navbar(false));
+		} else {
+			console.error('ERROR: DarkModeHandler ELSE ON LOAD if statement.');
+		}
+	}
+	if (onClick) {
+		if (clickDarkMode) {
+			localStorage.setItem('darkMode', true);
+			$('[darkMode=bg]').addClass('bg-dark');
+			$('[darkMode=text]').addClass('text-light');
+		} else if (!clickDarkMode) {
+			$('[darkMode=bg]').removeClass('bg-dark');
+			$('[darkMode=text]').removeClass('text-light');
+			localStorage.setItem('darkMode', false);
+		} else {
+			console.error('ERROR: DarkModeHandler ELSE ON CLICK if statement.');
+		}
+	} else {
+		console.error("ERROR: DarkModeHandler ELSE ON PARENT IF's statement.");
+	}
 }
 
+export function darkMode(switchedToDark) {
+	if (switchedToDark) {
+		localStorage.setItem('darkMode', true);
+		$('[darkMode=bg]').addClass('bg-dark');
+		$('[darkMode=text]').addClass('text-light');
+	} else if (!switchedToDark) {
+		$('[darkMode=bg]').removeClass('bg-dark');
+		$('[darkMode=text]').removeClass('text-light');
+		localStorage.setItem('darkMode', false);
+	} else {
+		console.error('Dark Mode broken. Please email developers.');
+	}
+}
 export function navbar(dark) {
 	if (dark) {
 		return `
@@ -27,25 +68,25 @@ export function navbar(dark) {
 						<li class="nav-item">
 							<a class="nav-link active text-light" darkMode='text' href="index.html">Home</a>
 						</li>
-						<div class="vr d-none d-lg-block"></div>
+						<div class="vr d-none d-lg-block" darkMode='text'></div>
 						<li class="nav-item">
 							<a class="nav-link text-light" darkMode='text' href="./Violence In Brazil.html">Violence</a>
 						</li>
-						<div class="vr d-none d-lg-block"></div>
+						<div class="vr d-none d-lg-block" darkMode='text'></div>
 						<li class="nav-item">
 							<a class="nav-link text-light" darkMode='text' href="./Income Inequality.html">Income Inequality</a>
 						</li>
-						<div class="vr d-none d-lg-block"></div>
+						<div class="vr d-none d-lg-block" darkMode='text'></div>
 
 						<li class="nav-item">
 							<a class="nav-link text-light" darkMode='text' href="./Political Corruption.html">Political Corruption</a>
 						</li>
-						<div class="vr d-none d-lg-block"></div>
+						<div class="vr d-none d-lg-block" darkMode='text'></div>
 
 						<li class="nav-item">
 							<a class="nav-link text-light" darkMode='text' href="./Human Trafficking.html">Human Trafficking</a>
 						</li>
-						<div class="vr d-none d-lg-block"></div>
+						<div class="vr d-none d-lg-block" darkMode='text'></div>
 
 						<li class="nav-item">
 							<a class="nav-link  text-light" darkMode='text' href="./Racism.html">Racism</a>
@@ -73,25 +114,25 @@ export function navbar(dark) {
 					<li class="nav-item">
 						<a class="nav-link active" darkMode='text' href="index.html">Home</a>
 					</li>
-					<div class="vr d-none d-lg-block"></div>
+					<div class="vr d-none d-lg-block" darkMode='text'></div>
 					<li class="nav-item">
 						<a class="nav-link" darkMode='text' href="./Violence In Brazil.html">Violence</a>
 					</li>
-					<div class="vr d-none d-lg-block"></div>
+					<div class="vr d-none d-lg-block" darkMode='text'></div>
 					<li class="nav-item">
 						<a class="nav-link" darkMode='text' href="./Income Inequality.html">Income Inequality</a>
 					</li>
-					<div class="vr d-none d-lg-block"></div>
+					<div class="vr d-none d-lg-block" darkMode='text'></div>
 
 					<li class="nav-item">
 						<a class="nav-link" darkMode='text' href="./Political Corruption.html">Political Corruption</a>
 					</li>
-					<div class="vr d-none d-lg-block"></div>
+					<div class="vr d-none d-lg-block" darkMode='text'></div>
 
 					<li class="nav-item">
 						<a class="nav-link" darkMode='text' href="./Human Trafficking.html">Human Trafficking</a>
 					</li>
-					<div class="vr d-none d-lg-block"></div>
+					<div class="vr d-none d-lg-block" darkMode='text'></div>
 
 					<li class="nav-item">
 						<a class="nav-link" darkMode='text' href="./Racism.html">Racism</a>
@@ -134,29 +175,6 @@ export function breadcrumb(activePage, dark) {
 		</nav>
 	</div>
 </div>`;
-	}
-}
-
-export function darkMode(switchedToDark) {
-	if (switchedToDark) {
-		localStorage.setItem('darkMode', true);
-		$('[darkMode=bg]').addClass('bg-dark');
-		$('[darkMode=text]').addClass('text-light');
-	} else if (!switchedToDark) {
-		$('[darkMode=bg]').removeClass('bg-dark');
-		$('[darkMode=text]').removeClass('text-light');
-		localStorage.setItem('darkMode', false);
-	} else {
-		console.error('Dark Mode broken. Please email developers.');
-	}
-}
-export function cachedDarkMode(cachedData) {
-	if (cachedData) {
-		console.log('Local Storage "darkMode" == ' + cachedData + '. Loading Dark Mode');
-		darkMode(true);
-	} else {
-		console.log('Local Storage "darkMode" == ' + cachedData + '. Loading Light Mode');
-		darkMode(false);
 	}
 }
 

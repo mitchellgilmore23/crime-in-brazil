@@ -2,11 +2,10 @@ const bootstrap = require('bootstrap');
 const $ = require('jquery');
 window.$ = $;
 import * as Common from './common';
-const cachedDarkMode = Common.strToBool(localStorage.getItem('darkMode'));
-cachedDarkMode ? Common.cachedDarkMode(true) : Common.cachedDarkMode(false);
 
-$('#navbarInject').replaceWith(Common.navbar(cachedDarkMode));
-$('#darkMode').on('click', i => Common.darkMode(i.currentTarget.checked));
+Common.darkModeHandler(true, localStorage.getItem('darkMode'));
+
+$('#darkMode').on('click', i => Common.darkModeHandler(null, null, true, i.currentTarget.checked));
 
 const carousel = new bootstrap.Carousel('#landingPageCarousel', {
 	// ride: 'carousel',

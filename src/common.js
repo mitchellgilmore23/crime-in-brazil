@@ -1,70 +1,163 @@
 const $ = require('jquery');
+export function strToBool(str) {
+	if (str === 'true') {
+		return true;
+	} else if (str == 'false') {
+		return false;
+	} else {
+		console.error('Error in strToBool Function. Contact Dev.');
+		return null;
+	}
+}
 
-export const navbar = `
-<nav class="navbar navbar-expand-lg border border-2" darkMode='bg'>
-<div class="container-fluid">
-	<button class="navbar-toggler w-100" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarText">
-		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-			<li class="nav-item">
-				<a class="nav-link active" darkMode='text' href="index.html">Home</a>
-			</li>
-			<div class="vr d-none d-lg-block"></div>
-			<li class="nav-item">
-				<a class="nav-link" darkMode='text' href="./Violence In Brazil.html">Violence</a>
-			</li>
-			<div class="vr d-none d-lg-block"></div>
-			<li class="nav-item">
-				<a class="nav-link" darkMode='text' href="./Income Inequality.html">Income Inequality</a>
-			</li>
-			<div class="vr d-none d-lg-block"></div>
+export function DarkModeHandler(onLoad, loadDarkMode, onClick, clickDarkMode) {
+	const cachedBool = strToBool(loadDarkMode);
+}
 
-			<li class="nav-item">
-				<a class="nav-link" darkMode='text' href="./Political Corruption.html">Political Corruption</a>
-			</li>
-			<div class="vr d-none d-lg-block"></div>
+export function navbar(dark) {
+	if (dark) {
+		return `
+			<nav class="navbar navbar-expand-lg border border-2" darkMode='bg'>
+			<div class="container-fluid">
+				<button class="navbar-toggler w-100" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarText">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active text-light" darkMode='text' href="index.html">Home</a>
+						</li>
+						<div class="vr d-none d-lg-block"></div>
+						<li class="nav-item">
+							<a class="nav-link text-light" darkMode='text' href="./Violence In Brazil.html">Violence</a>
+						</li>
+						<div class="vr d-none d-lg-block"></div>
+						<li class="nav-item">
+							<a class="nav-link text-light" darkMode='text' href="./Income Inequality.html">Income Inequality</a>
+						</li>
+						<div class="vr d-none d-lg-block"></div>
 
-			<li class="nav-item">
-				<a class="nav-link" darkMode='text' href="./Human Trafficking.html">Human Trafficking</a>
-			</li>
-			<div class="vr d-none d-lg-block"></div>
+						<li class="nav-item">
+							<a class="nav-link text-light" darkMode='text' href="./Political Corruption.html">Political Corruption</a>
+						</li>
+						<div class="vr d-none d-lg-block"></div>
 
-			<li class="nav-item">
-				<a class="nav-link" darkMode='text' href="./Racism.html">Racism</a>
-			</li>
-		</ul>
-		<div class="hstack gap-3">
-			<a class="nav-link" darkMode='text'>Light</a>
-			<div class="form-switch">
-				<input type="checkbox" class="form-check-input" id="darkMode" onclick="darkMode" />
+						<li class="nav-item">
+							<a class="nav-link text-light" darkMode='text' href="./Human Trafficking.html">Human Trafficking</a>
+						</li>
+						<div class="vr d-none d-lg-block"></div>
+
+						<li class="nav-item">
+							<a class="nav-link  text-light" darkMode='text' href="./Racism.html">Racism</a>
+						</li>
+					</ul>
+					<div class="hstack gap-3">
+						<a class="nav-link text-light" darkMode='text'>Light</a>
+						<div class="form-check form-switch">
+							<input type="checkbox" class="form-check-input" role="switch" id="darkMode" checked />
+						</div>
+						<a class="nav-link me-2 text-light" darkMode='text'>Dark</a>
+					</div>
+				</div>
 			</div>
-			<a class="nav-link me-2" darkMode='text'>Dark</a>
-		</div>
-	</div>
-</div>
-</nav>
-`;
+		</nav>`;
+	} else {
+		return `
+		<nav class="navbar navbar-expand-lg border border-2" darkMode='bg'>
+		<div class="container-fluid">
+			<button class="navbar-toggler w-100" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link active" darkMode='text' href="index.html">Home</a>
+					</li>
+					<div class="vr d-none d-lg-block"></div>
+					<li class="nav-item">
+						<a class="nav-link" darkMode='text' href="./Violence In Brazil.html">Violence</a>
+					</li>
+					<div class="vr d-none d-lg-block"></div>
+					<li class="nav-item">
+						<a class="nav-link" darkMode='text' href="./Income Inequality.html">Income Inequality</a>
+					</li>
+					<div class="vr d-none d-lg-block"></div>
 
-export function breadcrumb(activePage) {
-	return `
+					<li class="nav-item">
+						<a class="nav-link" darkMode='text' href="./Political Corruption.html">Political Corruption</a>
+					</li>
+					<div class="vr d-none d-lg-block"></div>
+
+					<li class="nav-item">
+						<a class="nav-link" darkMode='text' href="./Human Trafficking.html">Human Trafficking</a>
+					</li>
+					<div class="vr d-none d-lg-block"></div>
+
+					<li class="nav-item">
+						<a class="nav-link" darkMode='text' href="./Racism.html">Racism</a>
+					</li>
+				</ul>
+				<div class="hstack gap-3">
+					<a class="nav-link" darkMode='text'>Light</a>
+					<div class="form-check form-switch">
+						<input type="checkbox" class="form-check-input" role="switch" id="darkMode" />
+					</div>
+					<a class="nav-link me-2" darkMode='text'>Dark</a>
+				</div>
+			</div>
+		</div>
+		</nav>`;
+	}
+}
+
+export function breadcrumb(activePage, dark) {
+	if (dark) {
+		return `	<div class="container-fluid border border-1 pt-3">
+		<div class="container">
+			<nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+				<ol class="breadcrumb p-2">
+					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+					<li class="breadcrumb-item active text-light" darkMode='text'>${activePage}</li>
+				</ol>
+			</nav>
+		</div>
+	</div>`;
+	} else {
+		return `
 	<div class="container-fluid border border-1 pt-3">
 	<div class="container">
 		<nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
 			<ol class="breadcrumb p-2">
 				<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-				<li class="breadcrumb-item active">${activePage}</li>
+				<li class="breadcrumb-item active" darkMode='text'>${activePage}</li>
 			</ol>
 		</nav>
 	</div>
-</div>
-`;
+</div>`;
+	}
 }
 
-export function darkMode() {
-	$('[darkMode=bg]').addClass('bg-dark');
-	console.error('hahahahahah loser');
+export function darkMode(switchedToDark) {
+	if (switchedToDark) {
+		localStorage.setItem('darkMode', true);
+		$('[darkMode=bg]').addClass('bg-dark');
+		$('[darkMode=text]').addClass('text-light');
+	} else if (!switchedToDark) {
+		$('[darkMode=bg]').removeClass('bg-dark');
+		$('[darkMode=text]').removeClass('text-light');
+		localStorage.setItem('darkMode', false);
+	} else {
+		console.error('Dark Mode broken. Please email developers.');
+	}
+}
+export function cachedDarkMode(cachedData) {
+	if (cachedData) {
+		console.log('Local Storage "darkMode" == ' + cachedData + '. Loading Dark Mode');
+		darkMode(true);
+	} else {
+		console.log('Local Storage "darkMode" == ' + cachedData + '. Loading Light Mode');
+		darkMode(false);
+	}
 }
 
 /////////////////////// TIMELINE ON LANDING PAGE

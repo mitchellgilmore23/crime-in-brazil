@@ -10,10 +10,12 @@ const carousel = new bootstrap.Carousel('#landingPageCarousel', {
 	pause: 'hover',
 	interval: 4200,
 });
-const introToast = bootstrap.Toast.getOrCreateInstance($('#introToast'));
+const introToast = bootstrap.Toast.getOrCreateInstance($('#introToast'), {
+	autohide: false,
+});
 setTimeout(() => {
 	introToast.show();
-}, 5000);
+}, 2000);
 
 $(document).on('scroll resize', function (i) {
 	if (i.type == 'scroll') {

@@ -2,9 +2,7 @@ const bootstrap = require('bootstrap');
 const $ = require('jquery');
 window.$ = $;
 import * as Common from './common';
-
 Common.darkModeHandler(true, localStorage.getItem('darkMode'));
-
 $('#darkMode').on('click', i => Common.darkModeHandler(null, null, true, i.currentTarget.checked));
 
 const carousel = new bootstrap.Carousel('#landingPageCarousel', {
@@ -25,3 +23,14 @@ $(window).on('scroll resize', function (i) {
 		Common.fnOnResize();
 	}
 });
+
+$('button').hover(
+	function () {
+		// over
+		console.log($(this));
+	},
+	function () {
+		// out
+		console.log('BYE');
+	}
+);

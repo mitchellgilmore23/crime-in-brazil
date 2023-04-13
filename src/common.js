@@ -14,7 +14,7 @@ export function darkModeHandler(onLoad, loadDarkMode, onClick, clickDarkMode) {
 	if (onLoad) {
 		const cachedBool = strToBool(loadDarkMode);
 		if (cachedBool) {
-			console.log(`Local Storage/darkMode == ${cachedBool}.`);
+			console.log(`browswerStorage.darkMode=${cachedBool}`);
 			$('#navbarInject').replaceWith(navbar(true));
 			$('[darkMode=bg]').addClass('bg-dark');
 			$('[darkMode=text]').addClass('text-light');
@@ -173,11 +173,10 @@ var agTimeline = $('.js-timeline'),
 	agOuterHeight = $(window).outerHeight(),
 	agHeight = $(window).height(),
 	f = -1,
-	agFlag = false;
-var agPosY = 0;
+	agFlag = false,
+	agPosY = 0;
 export function fnOnScroll() {
 	agPosY = $(window).scrollTop();
-
 	fnUpdateFrame();
 }
 
@@ -190,7 +189,6 @@ export function fnOnResize() {
 
 export function fnUpdateWindow() {
 	agFlag = false;
-
 	agTimelineLine.css({
 		top: agTimelineItem.first().find(agTimelinePoint).offset().top - agTimelineItem.first().offset().top,
 		bottom: agTimeline.offset().top + agTimeline.outerHeight() - agTimelineItem.last().find(agTimelinePoint).offset().top,

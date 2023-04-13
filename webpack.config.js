@@ -1,5 +1,4 @@
 const path = require('path');
-const file = 'Violence In Brazil.js';
 module.exports = {
 	mode: 'development',
 	entry: {
@@ -11,6 +10,7 @@ module.exports = {
 		'Human Trafficking': './src/Human Trafficking.js',
 	},
 	output: {
+		path: path.resolve(__dirname, 'dist'),
 		filename: '[name].js',
 	},
 };

@@ -52,19 +52,6 @@ img {
 	font-size: 40px;
 	color: rgb(84, 89, 95);
 }
-.ag-timeline_title {
-	background-image: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/images/bg.jpg);
-	background-repeat: no-repeat;
-	background-position: 50% 50%;
-
-	background-size: cover;
-	-webkit-background-clip: text;
-	background-clip: text;
-	text-fill-color: transparent;
-	color: transparent;
-
-	font-size: 80px;
-}
 
 .ag-timeline_item {
 	margin: 0 0 50px;

@@ -10,7 +10,7 @@ module.exports = {
 		'Human Trafficking': './src/Human Trafficking.js',
 	},
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve(__dirname, 'dist/JS'),
 		filename: '[name].js',
 	},
 };

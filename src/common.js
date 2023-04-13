@@ -51,7 +51,7 @@ export function navbar(dark) {
 				<div class="collapse navbar-collapse" id="navbarText">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="nav-link active text-light" darkMode='text' href="index.html">Home</a>
+							<a class="nav-link active text-light" darkMode='text' href="./Home.html">Home</a>
 						</li>
 						<div class="vr d-none d-lg-block" darkMode='text'></div>
 						<li class="nav-item">
@@ -97,7 +97,7 @@ export function navbar(dark) {
 			<div class="collapse navbar-collapse" id="navbarText">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a class="nav-link active" darkMode='text' href="index.html">Home</a>
+						<a class="nav-link active" darkMode='text' href="./Home.html">Home</a>
 					</li>
 					<div class="vr d-none d-lg-block" darkMode='text'></div>
 					<li class="nav-item">
@@ -142,7 +142,7 @@ export function breadcrumb(activePage, dark) {
 		<div class="container">
 			<nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
 				<ol class="breadcrumb p-2">
-					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+					<li class="breadcrumb-item"><a href="./Home.html">Home</a></li>
 					<li class="breadcrumb-item active text-light" darkMode='text'>${activePage}</li>
 				</ol>
 			</nav>
@@ -154,7 +154,7 @@ export function breadcrumb(activePage, dark) {
 	<div class="container">
 		<nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
 			<ol class="breadcrumb p-2">
-				<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+				<li class="breadcrumb-item"><a href="Home.html">Home</a></li>
 				<li class="breadcrumb-item active" darkMode='text'>${activePage}</li>
 			</ol>
 		</nav>

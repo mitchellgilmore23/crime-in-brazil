@@ -6,16 +6,16 @@ Common.darkModeHandler(true, localStorage.getItem('darkMode'));
 $('#darkMode').on('click', i => Common.darkModeHandler(null, null, true, i.currentTarget.checked));
 
 const carousel = new bootstrap.Carousel('#landingPageCarousel', {
-	// ride: 'carousel',
+	ride: 'carousel',
 	pause: 'hover',
-	interval: 3500,
+	interval: 4200,
 });
-// const introToast = bootstrap.Toast.getOrCreateInstance($('#introToast'));
-// setTimeout(() => {
-// 	introToast.show();
-// }, 1000);
+const introToast = bootstrap.Toast.getOrCreateInstance($('#introToast'));
+setTimeout(() => {
+	introToast.show();
+}, 5000);
 
-$(window).on('scroll resize', function (i) {
+$(document).on('scroll resize', function (i) {
 	if (i.type == 'scroll') {
 		Common.fnOnScroll();
 	}
@@ -23,14 +23,3 @@ $(window).on('scroll resize', function (i) {
 		Common.fnOnResize();
 	}
 });
-
-$('button').hover(
-	function () {
-		// over
-		console.log($(this));
-	},
-	function () {
-		// out
-		console.log('BYE');
-	}
-);

@@ -286,7 +286,7 @@ img {
 
 @media only screen and (max-width: 767px) {
 	.ag-format-container {
-		width: 96%;
+		width: 98%;
 	}
 
 	.ag-timeline-card_img {
@@ -313,12 +313,20 @@ img {
 
 @media (min-width: 768px) and (max-width: 979px) {
 	.ag-format-container {
-		width: 750px;
+		width: 720px;
 	}
 }
 
 @media (min-width: 980px) and (max-width: 1161px) {
 	.ag-format-container {
 		width: 960px;
+	}
+}
+@media (max-width: 320px) {
+	.ag-timeline-block {
+		visibility: hidden;
+	}
+	#landingPageCarousel {
+		visibility: hidden;
 	}
 }

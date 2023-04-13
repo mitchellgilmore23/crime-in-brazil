@@ -52,7 +52,7 @@ export function navbar(dark) {
 					</svg>
 				</button>
 				<div class="navbar-collapse collapse" id="navbarText">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
 
 						<li class="nav-item">
 							<a class="nav-link active text-light" darkMode='text' href="./Home.html">Home</a>
@@ -107,7 +107,8 @@ export function navbar(dark) {
 			<button class="navbar-toggler w-100 border" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 			<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-list" viewBox="0 0 16 16" id='navbarButton'>
 			<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
-		</svg>			</button>
+		</svg>			
+		</button>
 			<div class="navbar-collapse collapse" id="navbarText">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
 					<li class="nav-item">
@@ -165,7 +166,7 @@ export function navbar(dark) {
 export function breadcrumb(activePage, dark) {
 	if (dark | (dark == 'true')) {
 		return `	
-		<div class="container-fluid border-bottom d-flex" darkMode='bg' style='background-color:#ededed;--bs-gutter-x:100px'>
+		<div class="container-fluid border-bottom d-flex" darkMode='bg' style='--bs-gutter-x:100px'>
 			<nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
 				<ol class="breadcrumb" style='margin-top:9px;margin-bottom:8px'>
 					<li class="breadcrumb-item"><a href="./Home.html">Home</a></li>
@@ -206,7 +207,6 @@ export function fnOnScroll() {
 export function fnOnResize() {
 	agPosY = $(window).scrollTop();
 	agHeight = $(window).height();
-
 	fnUpdateFrame();
 }
 
@@ -216,7 +216,6 @@ export function fnUpdateWindow() {
 		top: agTimelineItem.first().find(agTimelinePoint).offset().top - agTimelineItem.first().offset().top,
 		bottom: agTimeline.offset().top + agTimeline.outerHeight() - agTimelineItem.last().find(agTimelinePoint).offset().top,
 	});
-
 	f !== agPosY && ((f = agPosY), agHeight, fnUpdateProgress());
 }
 

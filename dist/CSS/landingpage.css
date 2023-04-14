@@ -31,6 +31,10 @@
 	font-style: normal;
 	font-weight: bold;
 }
+#cpiContainer {
+	max-height: 50vh;
+	overflow-y: scroll;
+}
 
 img {
 	max-width: 100%;

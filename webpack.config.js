@@ -2,7 +2,7 @@ const path = require('path');
 module.exports = {
 	mode: 'development',
 	entry: {
-		index: './src/index.js',
+		'Landing Page': './src/Landing Page.js',
 		'Violence In Brazil': './src/Violence In Brazil.js',
 		'Income Inequality': './src/Income Inequality.js',
 		Racism: './src/Racism.js',

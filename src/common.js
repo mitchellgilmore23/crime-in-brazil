@@ -1,25 +1,21 @@
-const $ = require('jquery');
-
-export function loader(page) {
-	if (page == 'home') {
-		//
-	} else {
-		//
-	}
-}
+export const $ = require('jquery');
+export const bootstrap = require('bootstrap');
 
 export function darkModeHandler(onLoad, loadDarkMode, onClick, clickDarkMode) {
 	if (onLoad) {
 		const cachedBool = loadDarkMode === 'true';
 		if (cachedBool) {
+			cssLoader();
 			console.log(`browswerStorage.darkMode=${cachedBool}`);
 			$('#navbarInject').replaceWith(navbar(true));
 			$('[darkMode=bg]').addClass('bg-dark');
 			$('[darkMode=text]').addClass('text-light');
 		} else if (!cachedBool) {
+			cssLoader();
 			console.log(`Local Storage/darkMode == ${cachedBool}.`);
 			$('#navbarInject').replaceWith(navbar(false));
 		} else {
+			cssLoader();
 			console.error('ERROR: DarkModeHandler ELSE ON LOAD if statement.');
 		}
 	}
@@ -40,7 +36,12 @@ export function darkModeHandler(onLoad, loadDarkMode, onClick, clickDarkMode) {
 		}
 	}
 }
-
+function cssLoader() {
+	$('head').append(`
+	<link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" href="../CSS/landingpage.css" />
+	`);
+}
 export function navbar(dark) {
 	if (dark) {
 		return `
@@ -162,7 +163,6 @@ export function navbar(dark) {
 		</nav>`;
 	}
 }
-
 export function breadcrumb(activePage, dark) {
 	if (dark | (dark == 'true')) {
 		return `	
@@ -186,9 +186,7 @@ export function breadcrumb(activePage, dark) {
 </div>`;
 	}
 }
-
-/////////////////////// TIMELINE ON LANDING PAGE
-
+//TIMELINE ON HOME PAGE
 var agTimeline = $('.js-timeline'),
 	agTimelineLine = $('.js-timeline_line'),
 	agTimelineLineProgress = $('.js-timeline_line-progress'),
@@ -201,16 +199,18 @@ var agTimeline = $('.js-timeline'),
 	agPosY = 0;
 export function fnOnScroll() {
 	agPosY = $(window).scrollTop();
-	fnUpdateFrame();
+	agFlag || requestAnimationFrame(fnUpdateWindow);
+	agFlag = true;
 }
 
 export function fnOnResize() {
 	agPosY = $(window).scrollTop();
 	agHeight = $(window).height();
-	fnUpdateFrame();
+	agFlag || requestAnimationFrame(fnUpdateWindow);
+	agFlag = true;
 }
 
-export function fnUpdateWindow() {
+function fnUpdateWindow() {
 	agFlag = false;
 	agTimelineLine.css({
 		top: agTimelineItem.first().find(agTimelinePoint).offset().top - agTimelineItem.first().offset().top,
@@ -218,8 +218,7 @@ export function fnUpdateWindow() {
 	});
 	f !== agPosY && ((f = agPosY), agHeight, fnUpdateProgress());
 }
-
-export function fnUpdateProgress() {
+function fnUpdateProgress() {
 	var agTop = agTimelineItem.last().find(agTimelinePoint).offset().top;
 	var i = agTop + agPosY - $(window).scrollTop();
 	var a = agTimelineLineProgress.offset().top + agPosY - $(window).scrollTop();
@@ -230,9 +229,4 @@ export function fnUpdateProgress() {
 		var agTop = $(this).find(agTimelinePoint).offset().top;
 		agTop + agPosY - $(window).scrollTop() < agPosY + 0.5 * agOuterHeight ? $(this).addClass('js-ag-active') : $(this).removeClass('js-ag-active');
 	});
-}
-
-export function fnUpdateFrame() {
-	agFlag || requestAnimationFrame(fnUpdateWindow);
-	agFlag = true;
 }

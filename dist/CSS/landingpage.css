@@ -35,6 +35,13 @@
 	max-height: 50vh;
 	overflow-y: scroll;
 }
+#countryCodeIcon,
+#countryIcon,
+#scoreIcon,
+#rankIcon,
+#regionIcon {
+	margin-top: 5px;
+}
 
 img {
 	max-width: 100%;

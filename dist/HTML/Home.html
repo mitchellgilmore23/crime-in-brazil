@@ -14,7 +14,9 @@
 			<div class="container lead mt-3 px-2 border-2 border-bottom">
 				<div class="d-flex align-items-center">
 					<img src="../media/brazil-flag.png" alt="brazil-flag" srcset="" height="150px" class="mt-5" />
-					<div class="fs-1 mt-4 pt-3 ms-4" darkMode="text"><em>About Brazil</em></div>
+					<div class="fs-1 mt-4 pt-3 ms-4" darkMode="text">
+						<em>About Brazil</em>
+					</div>
 				</div>
 				<div class="p-3" darkMode="text">
 					<p class="fs-4">
@@ -259,51 +261,122 @@
 				</div>
 			</div>
 
-			<div class="container mt-3 pb-5 border-2 border-bottom" darkMode="text" style="overflow: hidden !important">
+			<div class="container mt-3 pb-5 border-2 border-bottom" darkMode="text">
 				<div class="fs-1 mb-3">Worldwide Corruption Perception Index</div>
-						<div class="input-group mb-3">
-							<input type="text" class="form-control" aria-label="Text input with dropdown button" />
-							<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="cpiDropdown">2022</button>
-							<ul class="dropdown-menu dropdown-menu-end">
-								<li><a class="dropdown-item" onclick="cpi()">2021</a></li>
-								<li><a class="dropdown-item" href="#">2020</a></li>
-								<li><a class="dropdown-item" href="#">2019</a></li>
-								<li><a class="dropdown-item" href="#">Separated link</a></li>
-							</ul>
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" darkmode="text form" darkmode="" aria-label="Enter A Country Name Here." placeholder="Search here.." />
+					<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="cpiDropdown">2022</button>
+					<ul class="dropdown-menu dropdown-menu-end">
+						<li>
+							<a class="dropdown-item" onclick="cpi()">2021</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">2020</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">2019</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">Separated link</a>
+						</li>
+					</ul>
 				</div>
 				<div class="container" id="cpiContainer">
-						<table class="table text-center" darkmode="text">
-							<thead>
-								<tr class="sticky-top z-0" id="scrolling-header">
-									<th scope="col">Country Code 
-										<button type="button" class="btn p-0 m-0">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="40" fill="currentColor" class="bi bi-sort-numeric-down" viewBox="0 0 16 16">
-										<path d="M12.438 1.668V7H11.39V2.684h-.051l-1.211.859v-.969l1.262-.906h1.046z"/>
-										<path fill-rule="evenodd" d="M11.36 14.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.835 1.973-1.835 1.09 0 2.063.636 2.063 2.687 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98z"/>
-										<path d="M4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
-									</svg>
-								</button></th>
-									<th scope="col">Country</th>
-									<th scope="col">Region</th>
-									<th scope="col">Score</th>
-									<th scope="col">Rank</th>
-								</tr>
-							</thead>
-							<tbody id="cpiList">
-							</tbody>
-						</table>
-
+					<table class="table text-center" darkmode="text">
+						<thead>
+							<tr class="sticky-top z-0" id="scrolling-header">
+								<th scope="col">
+									<button type="button" class="btn fw-bold pb-0 mb-0 pt-3" darkmode="text" onclick="sort('countryCode')">
+										<div class="d-flex flex-row">
+											<p cpiHelper="yep">Code</p>
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												style="width: 16; height: 16; margin-top: 5px"
+												class="bi bi-sort-alpha-down"
+												darkmode="icon"
+												id="countryCodeIcon"
+												viewBox="0 0 16 16"
+												current="aToZ">
+												<path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z" />
+												<path
+													d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z" />
+											</svg>
+										</div>
+									</button>
+								</th>
+								<th scope="col">
+									<button type="button" class="btn fw-bold pb-0 mb-0 pt-3" darkmode="text" onclick="sort('country')">
+										<div class="d-flex flex-row">
+											<p cpiHelper="yep">Country</p>
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												style="width: 16; height: 16; margin-top: 5px"
+												class="bi bi-sort-alpha-down"
+												darkmode="icon"
+												id="countryIcon"
+												viewBox="0 0 16 16"
+												current="aToZ">
+												<path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z" />
+												<path
+													d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z" />
+											</svg>
+										</div>
+									</button>
+								</th>
+								<th scope="col">
+									<button type="button" class="btn fw-bold pb-0 mb-0 pt-3" darkmode="text" onclick="sort('region')">
+										<div class="d-flex flex-row">
+											<p cpiHelper="yep">Region</p>
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												current="aToZ"
+												style="width: 16; height: 16; margin-top: 5px"
+												class="bi bi-sort-alpha-down"
+												darkmode="icon"
+												id="regionIcon"
+												viewBox="0 0 16 16">
+												<path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z" />
+												<path
+													d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z" />
+											</svg>
+										</div>
+									</button>
+								</th>
+								<th scope="col">
+									<button type="button" class="btn fw-bold pb-0 mb-0 pt-3" darkmode="text" onclick="sort('score')">
+										<div class="d-flex flex-row">
+											<p cpiHelper="yep">Score</p>
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" darkmode="icon" id="scoreIcon" current="1to9" viewBox="0 0 16 16">
+												<path d="M12.438 1.668V7H11.39V2.684h-.051l-1.211.859v-.969l1.262-.906h1.046z" />
+												<path
+													fill-rule="evenodd"
+													d="M11.36 14.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.835 1.973-1.835 1.09 0 2.063.636 2.063 2.687 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98z" />
+												<path d="M4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z" />
+											</svg>
+										</div>
+									</button>
+								</th>
+								<th scope="col">
+									<button type="button" class="btn fw-bold pb-0 mb-0 pt-3 border-success" darkmode="text" onclick="sort('rank')">
+										<div class="d-flex flex-row">
+											<p cpiHelper="yep">Rank</p>
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id="rankIcon" darkmode="icon" current="1to9" class="bi bi-sort-numeric-down" viewBox="0 0 16 16">
+												<path d="M12.438 1.668V7H11.39V2.684h-.051l-1.211.859v-.969l1.262-.906h1.046z" />
+												<path
+													fill-rule="evenodd"
+													d="M11.36 14.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.835 1.973-1.835 1.09 0 2.063.636 2.063 2.687 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98z" />
+												<path d="M4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z" />
+											</svg>
+										</div>
+									</button>
+								</th>
+							</tr>
+						</thead>
+						<tbody id="cpiList"></tbody>
+					</table>
+				</div>
 			</div>
 		</main>
-
-		<footer>
-			<nav class="nav border-top border-start border-end bg-secondary">
-				<a class="nav-link active" aria-current="page" href="#">Top</a>
-				<a class="nav-link" href="#">Link</a>
-				<a class="nav-link" href="#">Link</a>
-				<a class="nav-link disabled">Disabled</a>
-			</nav>
-		</footer>
 	</body>
 	<toast>
 		<div class="toast-container position-fixed bottom-0 end-0 p-3">

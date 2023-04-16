@@ -1,15 +1,16 @@
 export const $ = require('jquery');
 export const bootstrap = require('bootstrap');
 
-export function darkModeHandler(onLoad, loadDarkMode, onClick, clickDarkMode) {
+export function darkModeHandler(onLoad, cachedBool, onClick, clickDarkMode) {
 	if (onLoad) {
-		const cachedBool = loadDarkMode === 'true';
 		if (cachedBool) {
 			cssLoader();
 			console.log(`browswerStorage.darkMode=${cachedBool}`);
 			$('#navbarInject').replaceWith(navbar(true));
 			$('[darkMode=bg]').addClass('bg-dark');
 			$('[darkMode=text]').addClass('text-light');
+			$('[darkmode=icon]').attr('fill', 'white');
+			$('[darkmode*=form]').addClass('bg-secondary');
 		} else if (!cachedBool) {
 			cssLoader();
 			console.log(`Local Storage/darkMode == ${cachedBool}.`);
@@ -24,13 +25,15 @@ export function darkModeHandler(onLoad, loadDarkMode, onClick, clickDarkMode) {
 			localStorage.setItem('darkMode', true);
 			$('[darkMode=bg]').addClass('bg-dark');
 			$('[darkMode=text]').addClass('text-light');
-			$('#navbarButton').attr('fill', 'white');
+			$('[darkmode=icon]').attr('fill', 'white');
+			$('[darkmode*=form]').addClass('bg-secondary');
 		} else if (!clickDarkMode) {
+			localStorage.setItem('darkMode', false);
 			$('[darkMode=bg]').removeClass('bg-dark');
 			$('[darkMode=text]').removeClass('text-light');
-			$('#navbarButton').attr('fill', 'black');
-
-			localStorage.setItem('darkMode', false);
+			$('[darkmode*=form]').removeClass('bg-secondary');
+			$('[darkmode=icon]').attr('fill', 'black');
+			$('[cpihelper=yep]').css('color', '');
 		} else {
 			console.error('ERROR: DarkModeHandler ELSE ON CLICK if statement.');
 		}
@@ -48,7 +51,7 @@ export function navbar(dark) {
 			<nav class="navbar navbar-expand-lg pb-0" darkMode='bg'>
 			<div class="container-fluid border-2 border-bottom pb-2">
 				<button class="navbar-toggler w-100 border" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-					<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-list" viewBox="0 0 16 16" id='navbarButton'>
+					<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-list" viewBox="0 0 16 16" darkmode='icon'>
 						<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
 					</svg>
 				</button>
@@ -106,7 +109,7 @@ export function navbar(dark) {
 		<nav class="navbar navbar-expand-lg pb-0" darkMode='bg'>
 		<div class="container-fluid border-2 border-bottom pb-2">
 			<button class="navbar-toggler w-100 border" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-			<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-list" viewBox="0 0 16 16" id='navbarButton'>
+			<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-list" viewBox="0 0 16 16" darkmode='icon'>
 			<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
 		</svg>			
 		</button>
@@ -224,7 +227,7 @@ function fnUpdateProgress() {
 	var a = agTimelineLineProgress.offset().top + agPosY - $(window).scrollTop();
 	var n = agPosY - a + agOuterHeight / 2;
 	i <= agPosY + agOuterHeight / 2 && (n = i - a);
-	agTimelineLineProgress.css({ height: n + 'px' });
+	agTimelineLineProgress.css({height: n + 'px'});
 	agTimelineItem.each(function () {
 		var agTop = $(this).find(agTimelinePoint).offset().top;
 		agTop + agPosY - $(window).scrollTop() < agPosY + 0.5 * agOuterHeight ? $(this).addClass('js-ag-active') : $(this).removeClass('js-ag-active');

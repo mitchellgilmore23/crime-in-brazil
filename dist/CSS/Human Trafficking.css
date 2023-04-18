@@ -86,7 +86,7 @@
     justify-content: center;
 }
 .box1 {
-    background-color: rgba(178, 34, 34, 1);
+    background: linear-gradient(to bottom, rgb(146, 0, 0) 10%, rgb(177, 31, 31) 100%);
     padding: 20px;
 }
 .box2 {

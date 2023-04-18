@@ -19,7 +19,7 @@ function plusSlides(n) {
   clearInterval(slideshowInterval);
   slideshowInterval = setInterval(function() {
     plusSlides(1);
-  }, 3000);
+  }, 10000);
 }
 
 function currentSlide(n) {
@@ -27,7 +27,7 @@ function currentSlide(n) {
   clearInterval(slideshowInterval);
   slideshowInterval = setInterval(function() {
     plusSlides(1);
-  }, 3000);
+  }, 10000);
 }
 
 function showSlides(n) {
@@ -46,7 +46,7 @@ function showSlides(n) {
 function startSlideshow() {
   slideshowInterval = setInterval(function() {
     plusSlides(1);
-  }, 3000);
+  }, 10000);
 }
 
 document.querySelector('.prev').addEventListener('click', function() {

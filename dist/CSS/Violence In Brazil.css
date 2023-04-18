@@ -1,19 +1,21 @@
+@import url('../../node_modules/bootstrap/dist/css/bootstrap.css');
+
 .main_container {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 .title_box {
-    background: linear-gradient(to bottom, rgb(146, 0, 0) 10%, rgb(177, 31, 31) 100%);
-    padding: 20px;
+	background: linear-gradient(to bottom, rgb(146, 0, 0) 10%, rgb(177, 31, 31) 100%);
+	padding: 20px;
 }
 .index_box {
-    display: inline-block;
-    width: 70%;
-    padding: 20px;
-    border: 1px solid black;
+	display: inline-block;
+	width: 70%;
+	padding: 20px;
+	border: 1px solid black;
 }
 .margins {
-    text-align: left;
-    width: 70%;
-    word-wrap: break-word;
+	text-align: left;
+	width: 70%;
+	word-wrap: break-word;
 }

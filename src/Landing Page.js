@@ -1,10 +1,7 @@
 import * as Common from './common'; import cpi from '../dist/media/cpi'; window.$ = Common.$;
 const darkMode = localStorage.getItem('darkMode') === 'true' ? true : false;
-
 Common.darkModeHandler(true, darkMode);
-$(document).ready(() => {
 
-})
 $('#darkMode').on('click', i => Common.darkModeHandler(null, null, true, i.currentTarget.checked));
 const carousel = new Common.bootstrap.Carousel('#landingPageCarousel', {
 	ride: 'carousel',

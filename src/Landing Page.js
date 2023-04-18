@@ -1,26 +1,34 @@
 import * as Common from './common'; import cpi from '../dist/media/cpi'; window.$ = Common.$;
 const darkMode = localStorage.getItem('darkMode') === 'true' ? true : false;
 Common.darkModeHandler(true, darkMode);
+{ window.tableSorter = tableSorter
+}
+const $ = Common.$; 
+window.$ = $
+// window.tableSorter = tableSorter
+const carousel = new Common.bootstrap.Carousel('#landingPageCarousel', {ride: 'carousel',pause: 'hover',interval: 4200});
+const introToast = Common.bootstrap.Toast.getOrCreateInstance($('#introToast'), {autohide: false});
 
-$('#darkMode').on('click', i => Common.darkModeHandler(null, null, true, i.currentTarget.checked));
-const carousel = new Common.bootstrap.Carousel('#landingPageCarousel', {
-	ride: 'carousel',
-	pause: 'hover',
-	interval: 4200,
-});
 carousel.cycle();
-const introToast = Common.bootstrap.Toast.getOrCreateInstance($('#introToast'), {
-	autohide: false,
-});
-setTimeout(() => {
-	// introToast.show();
+printCpiResults(yearExtractor())
+setTimeout(() => {// introToast.show();
 }, 2000);
 
-$(document).on('scroll resize',i => (i.type == 'scroll') ? Common.fnOnScroll() : Common.fnOnResize())
-$('#cpiContainer').on('scroll', i => { // on table scroll, change bg of header
-	var darkMode = localStorage.getItem('darkMode') === 'true' ? true : false;
-	var header = $('#scrolling-header');
-	var pos = $('#cpiContainer').scrollTop();
+
+$('#darkMode').on('click', i => Common.darkModeHandler(null, null, true, i.currentTarget.checked));
+$(document).on('scroll resize',i => {
+	const eType = i.type
+	if (eType === 'scroll'){
+		Common.fnOnScroll()
+	} else if (eType === 'resize') {
+		Common.fnOnResize()
+	}
+});
+$('#cpiContainer').on('scroll',cpiContainerScroll)
+function cpiContainerScroll() {
+	let darkMode = localStorage.getItem('darkMode') === 'true' ? true : false;
+	let header = $('#scrolling-header');
+	let pos = $('#cpiContainer').scrollTop();
 	if (pos < 80) {
 		header.css({'background-color': `rgba(251, 254, 82, ${(pos / 2) * 0.02})`});
 		if (!darkMode) return;
@@ -36,36 +44,37 @@ $('#cpiContainer').on('scroll', i => { // on table scroll, change bg of header
 			$('[darkmode=icon]').attr({fill: `rgb(0,0,0)`});
 		}
 	}
-});
-window.tableSorter = tableSorter
+}
+
+
 function tableSorter(col) {
 	$('#cpiContainer').animate({scrollTop: 0});
-	let perYearArr = yearExtractor()
+	let perYearArr = yearExtractor();
 	switch (col) {
 		case 'code':
 			iconChanger('countryCodeIcon');
-			if ($('#countryCodeIcon').attr('current') === 'aToZ'){perYearArr.sort((a,b) => {if (a.iso3 < b.iso3){return -1}})}
-			else if ($('#countryCodeIcon').attr('current') === 'zToA'){perYearArr.sort((a,b) => {if (a.iso3 > b.iso3){return -1}})}
+			if ($('#countryCodeIcon').attr('current') === 'aToZ'){perYearArr.sort((a,b) => a.iso3 < b.iso3 ? -1 : null )}
+			else if ($('#countryCodeIcon').attr('current') === 'zToA'){perYearArr.sort((a,b) => a.iso3 > b.iso3 ? -1 : null )}
 			break;
 		case 'country':	
 		iconChanger('countryIcon'); 
-		if ($('#countryIcon').attr('current') === 'aToZ'){perYearArr.sort((a,b) => {if (a.country < b.country){return -1}})}
-		else if ($('#countryIcon').attr('current') === 'zToA'){perYearArr.sort((a,b) => {if (a.country > b.country){return -1}})}
+		if ($('#countryIcon').attr('current') === 'aToZ'){perYearArr.sort((a,b) => a.country  <b.country ? -1 : null )}
+		else if ($('#countryIcon').attr('current') === 'zToA'){perYearArr.sort((a,b) => a.country > b.country ? -1 : null )}
 		break;
 		case 'region':
 			iconChanger('regionIcon')
-			if ($('#regionIcon').attr('current') === 'aToZ'){perYearArr.sort((a,b) => {if (a.region < b.region){return -1}})}
-			else if ($('#regionIcon').attr('current') === 'zToA'){perYearArr.sort((a,b) => {if (a.region > b.region){return -1}})}
+			if ($('#regionIcon').attr('current') === 'aToZ'){perYearArr.sort((a,b) => a.region < b.region ? -1 : null )}
+			else if ($('#regionIcon').attr('current') === 'zToA'){perYearArr.sort((a,b) => a.region > b.region ? -1 : null )}
 			break;
 		case 'score':
 			iconChanger('scoreIcon',true)
-			if ($('#scoreIcon').attr('current') === '1To9'){perYearArr.sort((a,b) => {if (a.score < b.score){return -1}})}
-			else if ($('#scoreIcon').attr('current') === '9To1'){perYearArr.sort((a,b) => {if (a.score > b.score){return -1}})}
+			if ($('#scoreIcon').attr('current') === '1To9'){perYearArr.sort((a,b) => a.score < b.score ? -1 : null )}
+			else if ($('#scoreIcon').attr('current') === '9To1'){perYearArr.sort((a,b) => a.score > b.score ? -1 : null )}
 			break;
 		case 'rank':
 			iconChanger('rankIcon',true)
-			if ($('#rankIcon').attr('current') === '1To9'){perYearArr.sort((a,b) => {if (a.rank - b.rank){return -1}})}
-			else if ($('#rankIcon').attr('current') === '9To1'){perYearArr.sort((a,b) => {a.rank < b.rank})}
+			if ($('#rankIcon').attr('current') === '1To9'){perYearArr.sort((a,b) => a.rank < b.rank ? -1 : null)}
+			else if ($('#rankIcon').attr('current') === '9To1'){perYearArr.sort((a,b) => a.rank > b.rank? -1 : null)}
 			break;
 		default: console.warn('SORT Function did not find a case in switch statement.'); break;
 	}
@@ -124,24 +133,30 @@ function yearExtractor (){
 	const year = $('#cpiDropdown').text(); 
 	let newList = [];
 	cpi.forEach(i => {
-		if (i.year == year) {
-			newList.push(i);
-		}
-	});
-	newList.sort((a, b) => {
-		return a.rank - b.rank;
+		if (i.year == year) newList.push(i);
 	});
 	let newerList = newList.filter(a => a.rank > 0)
+	newerList.sort((a,b) => a.rank < b.rank ? -1 : null)
 	return newerList
 }
+
 $('[year]').on('click', i => {
 let	yearClicked = i.currentTarget.childNodes[0].nodeValue
 $('#cpiDropdown').html(yearClicked)
 $('[year]').removeAttr('hidden')
+$(i.target).attr('hidden','true')
+iconChanger('rankIcon',true);
+printCpiResults(yearExtractor())
+$('#cpiTextInput')[0].value = ''
 
-let arr = yearExtractor()
-printCpiResults(arr)
 })
 
-
-
+$('#cpiTextInput').on('keyup', i => {
+	let array = yearExtractor()
+	let curVal = i.currentTarget.value
+	curVal = curVal.replace(" ","")
+	if (curVal.length >= 1){
+		let newArr =  array.filter(data => JSON.stringify(data).toLowerCase().indexOf(curVal.toLowerCase()) !== -1);
+		printCpiResults(newArr)
+	} 
+})

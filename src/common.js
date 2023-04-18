@@ -4,7 +4,6 @@ export const bootstrap = require('bootstrap');
 export function darkModeHandler(onLoad, cachedBool, onClick, clickDarkMode) {
 	if (onLoad) {
 		if (cachedBool) {
-			cssLoader();
 			console.log(`browswerStorage.darkMode=${cachedBool}`);
 			$('#navbarInject').replaceWith(navbar(true));
 			$('[darkMode=bg]').addClass('bg-dark');
@@ -12,11 +11,9 @@ export function darkModeHandler(onLoad, cachedBool, onClick, clickDarkMode) {
 			$('[darkmode=icon]').attr('fill', 'white');
 			$('[darkmode*=form]').addClass('bg-secondary');
 		} else if (!cachedBool) {
-			cssLoader();
 			console.log(`Local Storage/darkMode == ${cachedBool}.`);
 			$('#navbarInject').replaceWith(navbar(false));
 		} else {
-			cssLoader();
 			console.error('ERROR: DarkModeHandler ELSE ON LOAD if statement.');
 		}
 	}
@@ -38,12 +35,6 @@ export function darkModeHandler(onLoad, cachedBool, onClick, clickDarkMode) {
 			console.error('ERROR: DarkModeHandler ELSE ON CLICK if statement.');
 		}
 	}
-}
-function cssLoader() {
-	$('head').append(`
-	<link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css" />
-	<link rel="stylesheet" href="../CSS/landingpage.css" />
-	`);
 }
 export function navbar(dark) {
 	if (dark) {

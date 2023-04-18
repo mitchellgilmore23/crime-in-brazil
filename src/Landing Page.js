@@ -1,9 +1,10 @@
-import * as Common from './common';
-import cpi from '../dist/media/cpi';
-window.$ = Common.$;
-var darkMode = localStorage.getItem('darkMode') === 'true' ? true : false;
-Common.darkModeHandler(true, darkMode);
+import * as Common from './common'; import cpi from '../dist/media/cpi'; window.$ = Common.$;
+const darkMode = localStorage.getItem('darkMode') === 'true' ? true : false;
 
+Common.darkModeHandler(true, darkMode);
+$(document).ready(() => {
+
+})
 $('#darkMode').on('click', i => Common.darkModeHandler(null, null, true, i.currentTarget.checked));
 const carousel = new Common.bootstrap.Carousel('#landingPageCarousel', {
 	ride: 'carousel',
@@ -18,51 +19,8 @@ setTimeout(() => {
 	// introToast.show();
 }, 2000);
 
-$(document).on('scroll resize', function (i) {
-	if (i.type == 'scroll') {
-		Common.fnOnScroll();
-	}
-	if (i.type == 'resize') {
-		Common.fnOnResize();
-	}
-});
-
-function cpiText(country, rank, index, region, code) {
-	return `
-<tr>
-<td>${code}</td>
-<td>${country}</td>
-<td>${region}</td>
-<td>${index}</td>
-<td>${rank}</td>
-</tr>
-`;
-}
-
-function cpiResultViaYear() {
-	var year = $('#cpiDropdown').text();
-	var newList = [];
-	$('#cpiList').appendTo();
-	cpi.forEach(i => {
-		if (i.year == year) {
-			newList.push(i);
-		}
-	});
-	newList.sort((a, b) => {
-		return a.rank - b.rank;
-	});
-	newList.forEach(i => {
-		if (i.rank < 2) {
-			newList.shift();
-		}
-	});
-	newList.forEach(i => {
-		$('#cpiList').append(cpiText(i.country, i.rank, i.score, i.region, i.iso3));
-	});
-}
-cpiResultViaYear();
-
-$('#cpiContainer').on('scroll', i => {
+$(document).on('scroll resize',i => (i.type == 'scroll') ? Common.fnOnScroll() : Common.fnOnResize())
+$('#cpiContainer').on('scroll', i => { // on table scroll, change bg of header
 	var darkMode = localStorage.getItem('darkMode') === 'true' ? true : false;
 	var header = $('#scrolling-header');
 	var pos = $('#cpiContainer').scrollTop();
@@ -70,20 +28,68 @@ $('#cpiContainer').on('scroll', i => {
 		header.css({'background-color': `rgba(251, 254, 82, ${(pos / 2) * 0.02})`});
 		if (!darkMode) return;
 		if (darkMode) {
-			$('[cpihelper=yep]').css({color: `rgb(${255 - pos * 7}, ${255 - pos * 7},${255 - pos * 7})`});
+			$('[cpihelper=true]').css({color: `rgb(${255 - pos * 7}, ${255 - pos * 7},${255 - pos * 7})`});
 			$('[darkmode=icon]').attr({fill: `rgb(${255 - pos * 7}, ${255 - pos * 7},${255 - pos * 7})`});
 		}
 	} else if (pos >= 80) {
 		if (!darkMode) return;
 		if (darkMode) {
 			header.css({'background-color': `rgba(251, 254, 82, .8)`});
-			$('[cpihelper=yep]').css({color: 'rgb(0,0,0)'});
+			$('[cpihelper=true]').css({color: 'rgb(0,0,0)'});
 			$('[darkmode=icon]').attr({fill: `rgb(0,0,0)`});
 		}
 	}
 });
-window.sort = function sort(col) {
-	var icon;
+window.tableSorter = tableSorter
+function tableSorter(col) {
+	$('#cpiContainer').animate({scrollTop: 0});
+	let perYearArr = yearExtractor()
+	switch (col) {
+		case 'code':
+			iconChanger('countryCodeIcon');
+			if ($('#countryCodeIcon').attr('current') === 'aToZ'){perYearArr.sort((a,b) => {if (a.iso3 < b.iso3){return -1}})}
+			else if ($('#countryCodeIcon').attr('current') === 'zToA'){perYearArr.sort((a,b) => {if (a.iso3 > b.iso3){return -1}})}
+			break;
+		case 'country':	
+		iconChanger('countryIcon'); 
+		if ($('#countryIcon').attr('current') === 'aToZ'){perYearArr.sort((a,b) => {if (a.country < b.country){return -1}})}
+		else if ($('#countryIcon').attr('current') === 'zToA'){perYearArr.sort((a,b) => {if (a.country > b.country){return -1}})}
+		break;
+		case 'region':
+			iconChanger('regionIcon')
+			if ($('#regionIcon').attr('current') === 'aToZ'){perYearArr.sort((a,b) => {if (a.region < b.region){return -1}})}
+			else if ($('#regionIcon').attr('current') === 'zToA'){perYearArr.sort((a,b) => {if (a.region > b.region){return -1}})}
+			break;
+		case 'score':
+			iconChanger('scoreIcon',true)
+			if ($('#scoreIcon').attr('current') === '1To9'){perYearArr.sort((a,b) => {if (a.score < b.score){return -1}})}
+			else if ($('#scoreIcon').attr('current') === '9To1'){perYearArr.sort((a,b) => {if (a.score > b.score){return -1}})}
+			break;
+		case 'rank':
+			iconChanger('rankIcon',true)
+			if ($('#rankIcon').attr('current') === '1To9'){perYearArr.sort((a,b) => {if (a.rank - b.rank){return -1}})}
+			else if ($('#rankIcon').attr('current') === '9To1'){perYearArr.sort((a,b) => {a.rank < b.rank})}
+			break;
+		default: console.warn('SORT Function did not find a case in switch statement.'); break;
+	}
+	printCpiResults(perYearArr)
+}
+function printCpiResults(arr){
+	let pushResults = $('#cpiList')
+	pushResults.html('')
+	arr.forEach((v,i) => {
+		pushResults.append(`
+		<tr>
+			<td>${v.iso3}</td>
+			<td>${v.country}</td>
+			<td>${v.region}</td>
+			<td>${v.score}</td>
+			<td>${v.rank}</td>
+		</tr>
+		`);
+	})
+}
+function iconChanger (activeCol, numeric = false) {
 	const sortIcons = {
 		aToZ: `<path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"/>
 			<path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
@@ -100,61 +106,45 @@ window.sort = function sort(col) {
 		<path d="M12.438 8.668V14H11.39V9.684h-.051l-1.211.859v-.969l1.262-.906h1.046zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
 		`,
 	};
-	$('#cpiContainer').animate({scrollTop: 0});
-	switch (col) {
-		case 'countryCode':
-			icon = $('#countryCodeIcon');
-			if (icon.attr('current') == 'aToZ') {
-				icon.html(sortIcons.zToA);
-				icon.attr('current', 'zToA');
-			} else if (icon.attr('current') == 'zToA') {
-				icon.html(sortIcons.aToZ);
-				icon.attr('current', 'aToZ');
-			}
-			break;
-		case 'country':
-			icon = $('#countryIcon');
-			if (icon.attr('current') == 'aToZ') {
-				icon.html(sortIcons.zToA);
-				icon.attr('current', 'zToA');
-			} else if (icon.attr('current') == 'zToA') {
-				icon.html(sortIcons.aToZ);
-				icon.attr('current', 'aToZ');
-			}
-			break;
-		case 'region':
-			icon = $('#regionIcon');
-			if (icon.attr('current') == 'aToZ') {
-				icon.html(sortIcons.zToA);
-				icon.attr('current', 'zToA');
-			} else if (icon.attr('current') == 'zToA') {
-				icon.html(sortIcons.aToZ);
-				icon.attr('current', 'aToZ');
-			}
-			break;
-		case 'score':
-			icon = $('#scoreIcon');
-			if (icon.attr('current') == '1to9') {
-				icon.html(sortIcons.nineToOne);
-				icon.attr('current', '9to1');
-			} else if (icon.attr('current') == '9to1') {
-				icon.html(sortIcons.oneToNine);
-				icon.attr('current', '1to9');
-			}
-			break;
-		case 'rank':
-			icon = $('#rankIcon');
-			if (icon.attr('current') == '1to9') {
-				icon.html(sortIcons.nineToOne);
-				icon.attr('current', '9to1');
-			} else if (icon.attr('current') == '9to1') {
-				icon.html(sortIcons.oneToNine);
-				icon.attr('current', '1to9');
-			}
-			break;
-		default:
-			icon = null;
-			console.error('SORT Function did not find a case in switch statement.');
-			break;
+	let all = ['countryCodeIcon','countryIcon','regionIcon','scoreIcon','rankIcon']
+	all.splice(all.indexOf(activeCol),1);
+	let activeColJQ = $(`#${activeCol}`);
+	all.forEach(i => {$(`#${i}`).parent().parent().removeClass('border-bottom')});
+	if (!activeColJQ.parent().parent().hasClass('border-bottom') && !numeric ){ // element doesn't have border and is alphabetical sort
+		activeColJQ.parent().parent().addClass('border-bottom')
+	} 
+	else if (!activeColJQ.parent().parent().hasClass('border-bottom') && numeric ){ // element doesn't have border and is numerical sort
+		activeColJQ.parent().parent().addClass('border-bottom')
+	} 
+	else if (activeColJQ.parent().parent().hasClass('border-bottom') && !numeric ){ // element has border and is alphabetical sort
+		activeColJQ.attr('current') === 'aToZ' ? activeColJQ.html(sortIcons.zToA).attr('current','zToA') : activeColJQ.html(sortIcons.aToZ).attr('current', 'aToZ')
+	} 
+	else if (activeColJQ.parent().parent().hasClass('border-bottom') && numeric ){ // element has border and is numerical sort
+		activeColJQ.attr('current') === '1To9' ? activeColJQ.html(sortIcons.nineToOne).attr('current','9To1') : activeColJQ.html(sortIcons.oneToNine).attr('current','1To9')	
 	}
-};
+}
+function yearExtractor (){
+	const year = $('#cpiDropdown').text(); 
+	let newList = [];
+	cpi.forEach(i => {
+		if (i.year == year) {
+			newList.push(i);
+		}
+	});
+	newList.sort((a, b) => {
+		return a.rank - b.rank;
+	});
+	let newerList = newList.filter(a => a.rank > 0)
+	return newerList
+}
+$('[year]').on('click', i => {
+let	yearClicked = i.currentTarget.childNodes[0].nodeValue
+$('#cpiDropdown').html(yearClicked)
+$('[year]').removeAttr('hidden')
+
+let arr = yearExtractor()
+printCpiResults(arr)
+})
+
+
+

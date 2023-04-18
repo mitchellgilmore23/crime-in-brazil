@@ -189,6 +189,7 @@ export function breadcrumb(activePage, dark) {
 </div>`;
 	}
 }
+
 //TIMELINE ON HOME PAGE
 var agTimeline = $('.js-timeline'),
 	agTimelineLine = $('.js-timeline_line'),

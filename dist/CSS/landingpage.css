@@ -32,8 +32,10 @@
 	font-weight: bold;
 }
 #cpiContainer {
-	max-height: 50vh;
+	height: 40vh;
+	min-height: 20vh;
 	overflow-y: scroll;
+	resize: both;
 }
 #countryCodeIcon,
 #countryIcon,

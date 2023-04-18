@@ -260,24 +260,38 @@
 					</section>
 				</div>
 			</div>
-
 			<div class="container mt-3 pb-5 border-2 border-bottom" darkMode="text">
 				<div class="fs-1 mb-3">Worldwide Corruption Perception Index</div>
 				<div class="input-group mb-3">
-					<input type="text" class="form-control" darkmode="text form" darkmode="" aria-label="Enter A Country Name Here." placeholder="Search here.." />
+					<input type="text" class="form-control" darkmode="text form" aria-label="Enter A Country Name Here." placeholder="Search here.." />
 					<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="cpiDropdown">2022</button>
-					<ul class="dropdown-menu dropdown-menu-end">
+					<ul class="dropdown-menu dropdown-menu-end text-center">
 						<li>
-							<a class="dropdown-item" onclick="cpi()">2021</a>
+							<a class="dropdown-item" year hidden>2022</a>
 						</li>
 						<li>
-							<a class="dropdown-item" href="#">2020</a>
+							<a class="dropdown-item" year>2021</a>
 						</li>
 						<li>
-							<a class="dropdown-item" href="#">2019</a>
+							<a class="dropdown-item" year>2020</a>
 						</li>
 						<li>
-							<a class="dropdown-item" href="#">Separated link</a>
+							<a class="dropdown-item" year>2019</a>
+						</li>
+						<li>
+							<a class="dropdown-item" year>2018</a>
+						</li>
+						<li>
+							<a class="dropdown-item" year>2017</a>
+						</li>
+						<li>
+							<a class="dropdown-item" year>2016</a>
+						</li>
+						<li>
+							<a class="dropdown-item" year>2015</a>
+						</li>
+						<li>
+							<a class="dropdown-item" year>2014</a>
 						</li>
 					</ul>
 				</div>
@@ -286,9 +300,9 @@
 						<thead>
 							<tr class="sticky-top z-0" id="scrolling-header">
 								<th scope="col">
-									<button type="button" class="btn fw-bold pb-0 mb-0 pt-3" darkmode="text" onclick="sort('countryCode')">
+									<button type="button" class="btn fw-bold pb-0 mb-0 pt-3 rounded-0 border-2" darkmode="text" onclick="tableSorter('code')">
 										<div class="d-flex flex-row">
-											<p cpiHelper="yep">Code</p>
+											<p cpiHelper="true">Code</p>
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
 												style="width: 16; height: 16; margin-top: 5px"
@@ -305,9 +319,9 @@
 									</button>
 								</th>
 								<th scope="col">
-									<button type="button" class="btn fw-bold pb-0 mb-0 pt-3" darkmode="text" onclick="sort('country')">
+									<button type="button" class="btn fw-bold pb-0 mb-0 pt-3 rounded-0 border-2" darkmode="text" onclick="tableSorter('country')">
 										<div class="d-flex flex-row">
-											<p cpiHelper="yep">Country</p>
+											<p cpiHelper="true">Country</p>
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
 												style="width: 16; height: 16; margin-top: 5px"
@@ -324,9 +338,9 @@
 									</button>
 								</th>
 								<th scope="col">
-									<button type="button" class="btn fw-bold pb-0 mb-0 pt-3" darkmode="text" onclick="sort('region')">
+									<button type="button" class="btn fw-bold pb-0 mb-0 pt-3 rounded-0 border-2" darkmode="text" onclick="tableSorter('region')">
 										<div class="d-flex flex-row">
-											<p cpiHelper="yep">Region</p>
+											<p cpiHelper="true">Region</p>
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
 												current="aToZ"
@@ -343,10 +357,10 @@
 									</button>
 								</th>
 								<th scope="col">
-									<button type="button" class="btn fw-bold pb-0 mb-0 pt-3" darkmode="text" onclick="sort('score')">
+									<button type="button" class="btn fw-bold pb-0 mb-0 pt-3 rounded-0 border-2" darkmode="text" onclick="tableSorter('score')">
 										<div class="d-flex flex-row">
-											<p cpiHelper="yep">Score</p>
-											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" darkmode="icon" id="scoreIcon" current="1to9" viewBox="0 0 16 16">
+											<p cpiHelper="true">Score</p>
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" darkmode="icon" id="scoreIcon" current="1To9" viewBox="0 0 16 16">
 												<path d="M12.438 1.668V7H11.39V2.684h-.051l-1.211.859v-.969l1.262-.906h1.046z" />
 												<path
 													fill-rule="evenodd"
@@ -357,10 +371,10 @@
 									</button>
 								</th>
 								<th scope="col">
-									<button type="button" class="btn fw-bold pb-0 mb-0 pt-3 border-success" darkmode="text" onclick="sort('rank')">
+									<button type="button" class="btn fw-bold pb-0 mb-0 pt-3 rounded-0 border-2 border-bottom" darkmode="text" onclick="tableSorter('rank')">
 										<div class="d-flex flex-row">
-											<p cpiHelper="yep">Rank</p>
-											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id="rankIcon" darkmode="icon" current="1to9" class="bi bi-sort-numeric-down" viewBox="0 0 16 16">
+											<p cpiHelper="true">Rank</p>
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id="rankIcon" darkmode="icon" current="1To9" class="bi bi-sort-numeric-down" viewBox="0 0 16 16">
 												<path d="M12.438 1.668V7H11.39V2.684h-.051l-1.211.859v-.969l1.262-.906h1.046z" />
 												<path
 													fill-rule="evenodd"

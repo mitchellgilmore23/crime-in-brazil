@@ -6,6 +6,63 @@
  * or disable the default devtool with "devtool: false".
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
+var slideIndex = 1;
+var slides = document.querySelectorAll('.slide');
+var dots = document.querySelectorAll('.dot');
+var slideshowInterval = null;
+
+showSlides(slideIndex);
+startSlideshow();
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+  clearInterval(slideshowInterval);
+  slideshowInterval = setInterval(function() {
+    plusSlides(1);
+  }, 3000);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+  clearInterval(slideshowInterval);
+  slideshowInterval = setInterval(function() {
+    plusSlides(1);
+  }, 3000);
+}
+
+function showSlides(n) {
+  if (n > slides.length) { slideIndex = 1 }
+  if (n < 1) { slideIndex = slides.length }
+  for (var i = 0; i < slides.length; i++) {
+    slides[i].classList.remove('active');
+  }
+  for (var i = 0; i < dots.length; i++) {
+    dots[i].classList.remove('active');
+  }
+  slides[slideIndex-1].classList.add('active');
+  dots[slideIndex-1].classList.add('active');
+}
+
+function startSlideshow() {
+  slideshowInterval = setInterval(function() {
+    plusSlides(1);
+  }, 3000);
+}
+
+document.querySelector('.prev').addEventListener('click', function() {
+  plusSlides(-1);
+});
+
+document.querySelector('.next').addEventListener('click', function() {
+  plusSlides(1);
+});
+
+document.querySelectorAll('.dot').forEach(function(dot, index) {
+  dot.addEventListener('click', function() {
+    currentSlide(index + 1);
+  });
+});
+
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 

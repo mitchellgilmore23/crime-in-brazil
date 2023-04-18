@@ -6,7 +6,7 @@ module.exports = {
 		'Violence In Brazil': './src/Violence In Brazil.js',
 		'Income Inequality': './src/Income Inequality.js',
 		Racism: './src/Racism.js',
-		'Political Corruption': './src/Political Corruption.js',
+		'Operation Car Wash': './src/Operation Car Wash.js',
 		'Human Trafficking': './src/Human Trafficking.js',
 	},
 	output: {

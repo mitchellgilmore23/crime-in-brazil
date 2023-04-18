@@ -68,7 +68,7 @@ export function navbar(dark) {
 						<hr class='d-block d-lg-none m-0' darkMode='text'>
 
 						<li class="nav-item">
-							<a class="nav-link text-light" darkMode='text' href="./Political Corruption.html">Political Corruption</a>
+							<a class="nav-link text-light" darkMode='text' href="./Operation Car Wash.html">Operation Car Wash</a>
 						</li>
 						<div class="vr d-none d-lg-block" darkMode='text'></div>
 						<hr class='d-block d-lg-none m-0' darkMode='text'>
@@ -126,7 +126,7 @@ export function navbar(dark) {
 
 
 					<li class="nav-item">
-						<a class="nav-link" darkMode='text' href="./Political Corruption.html">Political Corruption</a>
+						<a class="nav-link" darkMode='text' href="./Operation Car Wash.html">Operation Car Wash</a>
 					</li>
 					<div class="vr d-none d-lg-block" darkMode='text'></div>
 					<hr class='d-block d-lg-none m-0' darkMode='text'>

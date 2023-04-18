@@ -58,7 +58,7 @@ document.querySelector('.next').addEventListener('click', function() {
 });
 
 document.querySelectorAll('.dot').forEach(function(dot, index) {
-  dot.addEventListener('click', function() {
+dot.addEventListener('click', function() {
     currentSlide(index + 1);
   });
 });

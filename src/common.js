@@ -13,9 +13,7 @@ export function darkModeHandler(onLoad, cachedBool, onClick, clickDarkMode) {
 		} else if (!cachedBool) {
 			console.log(`Local Storage/darkMode == ${cachedBool}.`);
 			$('#navbarInject').replaceWith(navbar(false));
-		} else {
-			console.error('ERROR: DarkModeHandler ELSE ON LOAD if statement.');
-		}
+		} else console.error('ERROR: DarkModeHandler ELSE ON LOAD if statement.');
 	}
 	if (onClick) {
 		if (clickDarkMode) {
@@ -31,9 +29,7 @@ export function darkModeHandler(onLoad, cachedBool, onClick, clickDarkMode) {
 			$('[darkmode*=form]').removeClass('bg-secondary');
 			$('[darkmode=icon]').attr('fill', 'black');
 			$('[cpihelper=yep]').css('color', '');
-		} else {
-			console.error('ERROR: DarkModeHandler ELSE ON CLICK if statement.');
-		}
+		} else console.error('ERROR: DarkModeHandler ELSE ON CLICK if statement.');
 	}
 }
 export function navbar(dark) {
@@ -48,19 +44,16 @@ export function navbar(dark) {
 				</button>
 				<div class="navbar-collapse collapse" id="navbarText">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
-
 						<li class="nav-item">
 							<a class="nav-link active text-light" darkMode='text' href="./Home.html">Home</a>
 						</li>
 						<div class="vr d-none d-lg-block" darkMode='text'></div>
 						<hr class='d-block d-lg-none m-0' darkMode='text'>
-
 						<li class="nav-item">
 							<a class="nav-link text-light" darkMode='text' href="./Violence In Brazil.html">Violence</a>
 						</li>
 						<div class="vr d-none d-lg-block" darkMode='text'></div>
 						<hr class='d-block d-lg-none m-0' darkMode='text'>
-
 						<li class="nav-item">
 							<a class="nav-link text-light" darkMode='text' href="./Income Inequality.html">Income Inequality</a>
 						</li>
@@ -94,10 +87,9 @@ export function navbar(dark) {
 					</div>
 				</div>
 			</div>
-		</nav>`;
-	} else {
-		return `
-		<nav class="navbar navbar-expand-lg pb-0" darkMode='bg'>
+		</nav>`
+	} else return `
+	<nav class="navbar navbar-expand-lg pb-0" darkMode='bg'>
 		<div class="container-fluid border-2 border-bottom pb-2">
 			<button class="navbar-toggler w-100 border" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 			<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-list" viewBox="0 0 16 16" darkmode='icon'>
@@ -111,39 +103,30 @@ export function navbar(dark) {
 					</li>
 					<div class="vr d-none d-lg-block" darkMode='text'></div>
 					<hr class='d-block d-lg-none m-0' darkMode='text'>
-
 					<li class="nav-item">
 						<a class="nav-link" darkMode='text' href="./Violence In Brazil.html">Violence</a>
 					</li>
 					<div class="vr d-none d-lg-block" darkMode='text'></div>
 					<hr class='d-block d-lg-none m-0' darkMode='text'>
-
 					<li class="nav-item">
 						<a class="nav-link" darkMode='text' href="./Income Inequality.html">Income Inequality</a>
 					</li>
 					<div class="vr d-none d-lg-block" darkMode='text'></div>
 					<hr class='d-block d-lg-none m-0' darkMode='text'>
-
-
 					<li class="nav-item">
 						<a class="nav-link" darkMode='text' href="./Operation Car Wash.html">Operation Car Wash</a>
 					</li>
 					<div class="vr d-none d-lg-block" darkMode='text'></div>
 					<hr class='d-block d-lg-none m-0' darkMode='text'>
-
-
 					<li class="nav-item">
 						<a class="nav-link" darkMode='text' href="./Human Trafficking.html">Human Trafficking</a>
 					</li>
 					<div class="vr d-none d-lg-block" darkMode='text'></div>
 					<hr class='d-block d-lg-none m-0' darkMode='text'>
-
-
 					<li class="nav-item">
 						<a class="nav-link" darkMode='text' href="./Racism.html">Racism</a>
 					</li>
 					<hr class='d-block d-lg-none m-0' darkMode='text'>
-
 				</ul>
 				<div class="hstack gap-3 justify-content-center mt-2 pt-2 mt-lg-0 pt-lg-0">
 					<a class="nav-link" darkMode='text'>Light</a>
@@ -154,8 +137,7 @@ export function navbar(dark) {
 				</div>
 			</div>
 		</div>
-		</nav>`;
-	}
+	</nav>`
 }
 export function breadcrumb(activePage, dark) {
 	if (dark | (dark == 'true')) {
@@ -182,28 +164,13 @@ export function breadcrumb(activePage, dark) {
 }
 
 //TIMELINE ON HOME PAGE
-var agTimeline = $('.js-timeline'),
-	agTimelineLine = $('.js-timeline_line'),
-	agTimelineLineProgress = $('.js-timeline_line-progress'),
-	agTimelinePoint = $('.js-timeline-card_point-box'),
-	agTimelineItem = $('.js-timeline_item'),
-	agOuterHeight = $(window).outerHeight(),
-	agHeight = $(window).height(),
-	f = -1,
-	agFlag = false,
-	agPosY = 0;
-export function fnOnScroll() {
-	agPosY = $(window).scrollTop();
-	agFlag || requestAnimationFrame(fnUpdateWindow);
-	agFlag = true;
-}
+var agTimeline = $('.js-timeline'),	agTimelineLine = $('.js-timeline_line'),agTimelineLineProgress = $('.js-timeline_line-progress'),
+	agTimelinePoint = $('.js-timeline-card_point-box'),	agTimelineItem = $('.js-timeline_item'), agOuterHeight = $(window).outerHeight(),
+	agHeight = $(window).height(),f = -1,	agFlag = false, agPosY = 0;
 
-export function fnOnResize() {
-	agPosY = $(window).scrollTop();
-	agHeight = $(window).height();
-	agFlag || requestAnimationFrame(fnUpdateWindow);
-	agFlag = true;
-}
+export function fnOnScroll() {agPosY = $(window).scrollTop(); agFlag || requestAnimationFrame(fnUpdateWindow); agFlag = true };
+
+export function fnOnResize() {agPosY = $(window).scrollTop(); agHeight = $(window).height(); agFlag || requestAnimationFrame(fnUpdateWindow);agFlag = true };
 
 function fnUpdateWindow() {
 	agFlag = false;

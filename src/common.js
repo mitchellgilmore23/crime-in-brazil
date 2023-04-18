@@ -7,7 +7,7 @@ export function darkModeHandler(onLoad, cachedBool, onClick, clickDarkMode) {
 			console.log(`browswerStorage.darkMode=${cachedBool}`);
 			$('#navbarInject').replaceWith(navbar(true));
 			$('[darkMode=bg]').addClass('bg-dark');
-			$('[darkMode=text]').addClass('text-light');
+			$('[darkMode*=text]').addClass('text-light');
 			$('[darkmode=icon]').attr('fill', 'white');
 			$('[darkmode*=form]').addClass('bg-secondary');
 		} else if (!cachedBool) {
@@ -21,13 +21,13 @@ export function darkModeHandler(onLoad, cachedBool, onClick, clickDarkMode) {
 		if (clickDarkMode) {
 			localStorage.setItem('darkMode', true);
 			$('[darkMode=bg]').addClass('bg-dark');
-			$('[darkMode=text]').addClass('text-light');
-			$('[darkmode=icon]').attr('fill', 'white');
+			$('[darkMode*=text]').addClass('text-light');
+			$('[darkmode*=icon]').attr('fill', 'white');
 			$('[darkmode*=form]').addClass('bg-secondary');
 		} else if (!clickDarkMode) {
 			localStorage.setItem('darkMode', false);
 			$('[darkMode=bg]').removeClass('bg-dark');
-			$('[darkMode=text]').removeClass('text-light');
+			$('[darkMode*=text]').removeClass('text-light');
 			$('[darkmode*=form]').removeClass('bg-secondary');
 			$('[darkmode=icon]').attr('fill', 'black');
 			$('[cpihelper=yep]').css('color', '');

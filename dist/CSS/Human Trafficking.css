@@ -1,95 +1,13 @@
-.slideshow {
-    position: relative;
-    width: 100%;
-    height: 400px;
-}
-
-.slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-}
-
-.slide.active {
-    display: block;
-}
-
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.controls {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    z-index: 1;
-    padding: 0 16px;
-}
-
-.arrow {
-    background-color: rgba(0, 0, 0, 0.3);
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 20px;
-    padding: 16px;
-    position: relative;
-    margin: 0;
-}
-
-.arrow.prev {
-    margin-right: auto;
-}
-
-.arrow.next {
-    margin-left: auto;
-}
-
-.arrow:focus {
-    outline: none;
-}
-
-.dots {
-    position: absolute;
-    bottom: -140px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-}
-
-.dot {
-    height: 10px;
-    width: 10px;
-    background-color: rgb(177, 177, 177);
-    border-radius: 50%;
-    margin: 0 8px;
-    cursor: pointer;
-}
-
-.dot.active {
-    background-color: white;
-}
-
-.container {
+.main_container {
     display: flex;
     justify-content: center;
 }
-.box {
+.title_box {
     background: linear-gradient(to bottom, rgb(136, 50, 0) 10%, rgb(177, 65, 31) 100%);
     padding: 20px;
+    align-content: center;
 }
-.box2 {
+.index_box {
     display: inline-block;
     width: 70%;
     padding: 20px;

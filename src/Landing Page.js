@@ -1,52 +1,41 @@
 import * as Common from './common'; import cpi from '../dist/media/cpi'; window.$ = Common.$;
-const darkMode = localStorage.getItem('darkMode') === 'true' ? true : false;
-Common.darkModeHandler(true, darkMode);
-{ window.tableSorter = tableSorter
-}
-const $ = Common.$; 
-window.$ = $
-// window.tableSorter = tableSorter
-const carousel = new Common.bootstrap.Carousel('#landingPageCarousel', {ride: 'carousel',pause: 'hover',interval: 4200});
+const darkMode = localStorage.getItem('darkMode') === 'true' ? true : false; const $ = Common.$;
+Common.darkModeHandler(true, darkMode); window.tableSorter = tableSorter;
+printCpiResults(yearExtractor());
+
+new Common.bootstrap.Carousel('#landingPageCarousel', {ride: 'carousel',pause: 'hover',interval: 4200}).cycle();
 const introToast = Common.bootstrap.Toast.getOrCreateInstance($('#introToast'), {autohide: false});
-
-carousel.cycle();
-printCpiResults(yearExtractor())
-setTimeout(() => {// introToast.show();
-}, 2000);
-
-
+setTimeout(() => {introToast.show()}, 2000);
+$(document).on('scroll resize', i =>  i.type === 'resize' ? Common.fnOnResize() : Common.fnOnScroll());
 $('#darkMode').on('click', i => Common.darkModeHandler(null, null, true, i.currentTarget.checked));
-$(document).on('scroll resize',i => {
-	const eType = i.type
-	if (eType === 'scroll'){
-		Common.fnOnScroll()
-	} else if (eType === 'resize') {
-		Common.fnOnResize()
-	}
-});
-$('#cpiContainer').on('scroll',cpiContainerScroll)
-function cpiContainerScroll() {
-	let darkMode = localStorage.getItem('darkMode') === 'true' ? true : false;
-	let header = $('#scrolling-header');
-	let pos = $('#cpiContainer').scrollTop();
-	if (pos < 80) {
-		header.css({'background-color': `rgba(251, 254, 82, ${(pos / 2) * 0.02})`});
-		if (!darkMode) return;
-		if (darkMode) {
-			$('[cpihelper=true]').css({color: `rgb(${255 - pos * 7}, ${255 - pos * 7},${255 - pos * 7})`});
-			$('[darkmode=icon]').attr({fill: `rgb(${255 - pos * 7}, ${255 - pos * 7},${255 - pos * 7})`});
-		}
-	} else if (pos >= 80) {
-		if (!darkMode) return;
-		if (darkMode) {
-			header.css({'background-color': `rgba(251, 254, 82, .8)`});
-			$('[cpihelper=true]').css({color: 'rgb(0,0,0)'});
-			$('[darkmode=icon]').attr({fill: `rgb(0,0,0)`});
+
+$('#cpiContainer').on('scroll mousedown resize mousemove', i => cpiContainerScroll(i));
+
+function cpiContainerScroll(i) {
+	if (i.type === 'scroll'){
+		let darkMode = localStorage.getItem('darkMode') === 'true' ? true : false;
+		let header = $('#scrolling-header');
+		let pos = $('#cpiContainer').scrollTop();
+		if (pos < 80) {
+			header.css({'background-color': `rgba(251, 254, 82, ${(pos / 2) * 0.02})`});
+			if (!darkMode) return;
+			if (darkMode) {
+				$('[cpihelper=true]').css({color: `rgb(${255 - pos * 7}, ${255 - pos * 7},${255 - pos * 7})`});
+				$('[darkmode=icon]').attr({fill: `rgb(${255 - pos * 7}, ${255 - pos * 7},${255 - pos * 7})`});
+			}
+		} else if (pos >= 80) {
+			if (!darkMode) return;
+			if (darkMode) {
+				header.css({'background-color': `rgba(251, 254, 82, .8)`});
+				$('[cpihelper=true]').css({color: 'rgb(0,0,0)'});
+				$('[darkmode=icon]').attr({fill: `rgb(0,0,0)`});
+			}
 		}
 	}
-}
-
-
+	else if (i.type === 'mousedown' || i.type === 'mousemove'){
+		window.scrollTo(0,22000)
+	}
+};
 function tableSorter(col) {
 	$('#cpiContainer').animate({scrollTop: 0});
 	let perYearArr = yearExtractor();
@@ -79,7 +68,7 @@ function tableSorter(col) {
 		default: console.warn('SORT Function did not find a case in switch statement.'); break;
 	}
 	printCpiResults(perYearArr)
-}
+};
 function printCpiResults(arr){
 	let pushResults = $('#cpiList')
 	pushResults.html('')
@@ -94,7 +83,7 @@ function printCpiResults(arr){
 		</tr>
 		`);
 	})
-}
+};
 function iconChanger (activeCol, numeric = false) {
 	const sortIcons = {
 		aToZ: `<path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"/>
@@ -128,7 +117,7 @@ function iconChanger (activeCol, numeric = false) {
 	else if (activeColJQ.parent().parent().hasClass('border-bottom') && numeric ){ // element has border and is numerical sort
 		activeColJQ.attr('current') === '1To9' ? activeColJQ.html(sortIcons.nineToOne).attr('current','9To1') : activeColJQ.html(sortIcons.oneToNine).attr('current','1To9')	
 	}
-}
+};
 function yearExtractor (){
 	const year = $('#cpiDropdown').text(); 
 	let newList = [];
@@ -138,18 +127,17 @@ function yearExtractor (){
 	let newerList = newList.filter(a => a.rank > 0)
 	newerList.sort((a,b) => a.rank < b.rank ? -1 : null)
 	return newerList
-}
+};
 
 $('[year]').on('click', i => {
-let	yearClicked = i.currentTarget.childNodes[0].nodeValue
-$('#cpiDropdown').html(yearClicked)
-$('[year]').removeAttr('hidden')
-$(i.target).attr('hidden','true')
-iconChanger('rankIcon',true);
-printCpiResults(yearExtractor())
-$('#cpiTextInput')[0].value = ''
-
-})
+	let	yearClicked = i.currentTarget.childNodes[0].nodeValue;
+	$('#cpiDropdown').html(yearClicked);
+	$('[year]').removeAttr('hidden');
+	$(i.target).attr('hidden','true');
+	iconChanger('rankIcon',true);
+	printCpiResults(yearExtractor());
+	$('#cpiTextInput')[0].value = '';
+});
 
 $('#cpiTextInput').on('keyup', i => {
 	let array = yearExtractor()
@@ -158,5 +146,5 @@ $('#cpiTextInput').on('keyup', i => {
 	if (curVal.length >= 1){
 		let newArr =  array.filter(data => JSON.stringify(data).toLowerCase().indexOf(curVal.toLowerCase()) !== -1);
 		printCpiResults(newArr)
-	} 
-})
+	};
+});

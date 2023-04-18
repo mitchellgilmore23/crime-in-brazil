@@ -85,35 +85,19 @@
     display: flex;
     justify-content: center;
 }
-.box1 {
-    background: linear-gradient(to bottom, rgb(146, 0, 0) 10%, rgb(177, 31, 31) 100%);
+.box {
+    background: linear-gradient(to bottom, rgb(136, 50, 0) 10%, rgb(177, 65, 31) 100%);
     padding: 20px;
 }
 .box2 {
     display: inline-block;
-    width: 60%;
+    width: 70%;
     padding: 20px;
     border: 1px solid black;
 }
 
 .margins {
     text-align: left;
-    width: 60%;
+    width: 70%;
     word-wrap: break-word;
-}
-
-.box hr {
-    border: none;
-    border-top: 2px solid black;
-    margin: 10px 0;
-}
-
-.box ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.box li {
-    line-height: 1.5;
 }

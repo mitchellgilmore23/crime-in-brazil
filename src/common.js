@@ -139,28 +139,15 @@ export function navbar(dark) {
 		</div>
 	</nav>`
 }
-export function breadcrumb(activePage, dark) {
-	if (dark | (dark == 'true')) {
-		return `	
-		<div class="container-fluid border-bottom d-flex" darkMode='bg' style='--bs-gutter-x:100px'>
-			<nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
-				<ol class="breadcrumb" style='margin-top:9px;margin-bottom:8px'>
-					<li class="breadcrumb-item"><a href="./Home.html">Home</a></li>
-					<li class="breadcrumb-item active text-light" darkMode='text'>${activePage}</li>
-				</ol>
-			</nav>
-	</div>`;
-	} else {
-		return `
-	<div class="container-fluid border-bottom d-flex" darkMode='bg' style='background-color:#ededed;--bs-gutter-x:100px'>
-		<nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
-		<ol class="breadcrumb" style='margin-top:9px;margin-bottom:8px'>
-				<li class="breadcrumb-item"><a href="./Home.html">Home</a></li>
-				<li class="breadcrumb-item active" darkMode='text'>${activePage}</li>
-			</ol>
-		</nav>
-</div>`;
-	}
+export function breadcrumb(activePage) {
+	return `<div class="container-fluid border-bottom d-flex" style='background-color:rgb(251,254,82);--bs-gutter-x:100px'>
+						<nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+							<ol class="breadcrumb" style='margin-top:9px;margin-bottom:8px'>
+								<li class="breadcrumb-item"><a href="./Home.html">Home</a></li>
+								<li class="breadcrumb-item active" >${activePage}</li>
+							</ol>
+						</nav>
+					</div>`
 }
 
 //TIMELINE ON HOME PAGE

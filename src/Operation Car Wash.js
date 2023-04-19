@@ -11,11 +11,28 @@ $('#darkMode').on('click', i => {
 
 function darkModeHandler(onLoad, cachedBool, onClick, clickDarkMode) {
 	if (onLoad) {
-		if (cachedBool) $('#accordion').attr('data-bs-theme','dark')
-		else if (!cachedBool) $('#accordion').removeAttr('data-bs-theme')
+		if (cachedBool) $('#accordion').attr('data-bs-theme','dark').css({
+			'--bs-accordion-btn-color':'rgb(251, 254, 82)',
+		'--bs-accordion-color':'rgb(255,255,255)',
+		'--bs-accordion-border-color': 'rgb(251, 254, 82)'
+	})
+		else if (!cachedBool) $('#accordion').removeAttr('data-bs-theme').css({
+			'--bs-accordion-btn-color':'#000',
+			'--bs-accordion-color': 'rgb(0,0,0)',
+			'--bs-accordion-border-color': 'rgb(0,0,0)'
+
+		})
 	}
 	if (onClick) {
-		if (clickDarkMode) $('#accordion').attr('data-bs-theme','dark')
-		else if (!clickDarkMode) $('#accordion').removeAttr('data-bs-theme')
+		if (clickDarkMode) $('#accordion').attr('data-bs-theme','dark').css({
+			'--bs-accordion-btn-color':'rgb(251, 254, 82)',
+			'--bs-accordion-color':'rgb(255,255,255)',
+			'--bs-accordion-border-color': 'rgb(251, 254, 82)'
+		})
+		else if (!clickDarkMode) $('#accordion').removeAttr('data-bs-theme').css(
+			{'--bs-accordion-btn-color':'#000',
+			'--bs-accordion-color': 'rgb(0,0,0)',
+			'--bs-accordion-border-color': 'rgb(0,0,0)'
+		})
 	}
 }

@@ -33,6 +33,8 @@
 	font-style: normal;
 	font-weight: bold;
 }
+.accordion {
+}
 #cpiContainer {
 	height: 40vh;
 	min-height: 20vh;

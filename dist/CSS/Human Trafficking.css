@@ -1,5 +1,8 @@
 @import url('../../node_modules/bootstrap/dist/css/bootstrap.css');
-
+.slidesSize {
+	height: 900px;
+	overflow: hidden;
+  }
 .main_container {
 	display: flex;
 	justify-content: center;

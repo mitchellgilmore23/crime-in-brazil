@@ -8,9 +8,8 @@ const introToast = Common.bootstrap.Toast.getOrCreateInstance($('#introToast'), 
 setTimeout(() => {introToast.show()}, 2000);
 $(document).on('scroll resize', i =>  i.type === 'resize' ? Common.fnOnResize() : Common.fnOnScroll());
 $('#darkMode').on('click', i => Common.darkModeHandler(null, null, true, i.currentTarget.checked));
-
 $('#cpiContainer').on('scroll mousedown resize mousemove', i => cpiContainerScroll(i));
-
+console.log('lmaos')
 function cpiContainerScroll(i) {
 	if (i.type === 'scroll'){
 		let darkMode = localStorage.getItem('darkMode') === 'true' ? true : false;

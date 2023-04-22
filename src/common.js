@@ -150,8 +150,9 @@ export function breadcrumb(activePage) {
 					</div>`
 }
 export function footer() {
-	return `<p class='d-block'>&copy; 2023 MTSURedTeam.com</p>
-	<p class='d-block'>Website Design and Development by MTSU: Red Team</p>`
+	return `<div class='px-2' style="text-align:center">
+	<p class='pt-3 mb-0'>&copy; 2023 MTSURedTeam.com</p>
+	<p class='m-0 pb-4'>Website Design and Development by MTSU: Red Team</p>`
 }
 
 

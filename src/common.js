@@ -149,6 +149,10 @@ export function breadcrumb(activePage) {
 						</nav>
 					</div>`
 }
+export function footer() {
+	return `<p>&copy; 2023 MTSURedTeam.com</p>
+	<p>Website Design and Development by MTSU: Red Team</p>`
+	}
 
 //TIMELINE ON HOME PAGE
 var agTimeline = $('.js-timeline'),	agTimelineLine = $('.js-timeline_line'),agTimelineLineProgress = $('.js-timeline_line-progress'),

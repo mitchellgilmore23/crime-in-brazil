@@ -4,3 +4,4 @@ const $ = Common.$
 $('#breadcrumbInject').html(Common.breadcrumb('Violence In Brazil'))
 Common.darkModeHandler(true, darkMode);
 $('#darkMode').on('click', i => Common.darkModeHandler(null, null, true, i.currentTarget.checked));
+$("#footerInject").replaceWith(Common.footer());

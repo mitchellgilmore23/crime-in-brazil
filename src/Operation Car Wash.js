@@ -4,6 +4,7 @@ const $ = Common.$
 $('#breadcrumbInject').html(Common.breadcrumb('Operation Car Wash'))
 Common.darkModeHandler(true, darkMode);
 darkModeHandler(true,darkMode)
+$("#footerInject").replaceWith(Common.footer());
 $('#darkMode').on('click', i => {
 	Common.darkModeHandler(null, null, true, i.currentTarget.checked) ; 
 	darkModeHandler(null,null,true,i.currentTarget.checked);

@@ -1,10 +1,7 @@
 @import url('../../node_modules/bootstrap/dist/css/bootstrap.css');
-
 #accordion {
 	--bs-accordion-active-bg: rgb(251, 254, 82);
 	--bs-accordion-active-color: #000;
 	--bs-accordion-btn-focus-box-shadow: #000;
 	--bs-accordion-border-color: rgb(251, 254, 82);
-
 }
-

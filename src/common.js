@@ -1,6 +1,6 @@
 export const $ = require('jquery');
 export const bootstrap = require('bootstrap');
-
+//SHARED FUNCTIONS
 export function darkModeHandler(onLoad, cachedBool, onClick, clickDarkMode) {
 	if (onLoad) {
 		if (cachedBool) {
@@ -154,7 +154,7 @@ export function footer() {
 	<p class='pt-3 mb-0'>&copy; 2023 MTSURedTeam.com</p>
 	<p class='m-0 pb-4'>Website Design and Development by MTSU: Red Team</p>`
 }
-
+//
 
 //TIMELINE ON HOME PAGE
 var agTimeline = $('.js-timeline'),	agTimelineLine = $('.js-timeline_line'),agTimelineLineProgress = $('.js-timeline_line-progress'),
@@ -185,3 +185,4 @@ function fnUpdateProgress() {
 		agTop + agPosY - $(window).scrollTop() < agPosY + 0.5 * agOuterHeight ? $(this).addClass('js-ag-active') : $(this).removeClass('js-ag-active');
 	});
 }
+//

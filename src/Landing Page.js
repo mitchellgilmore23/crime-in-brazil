@@ -1,17 +1,40 @@
-import * as Common from './common'; import cpi from '../dist/media/cpi'; window.$ = Common.$;
+import * as Common from './common'; import cpi from '../dist/media/cpi';
 const darkMode = localStorage.getItem('darkMode') === 'true' ? true : false; const $ = Common.$;
+
 Common.darkModeHandler(true, darkMode); window.tableSorter = tableSorter;
 printCpiResults(yearExtractor());
 
-new Common.bootstrap.Carousel('#landingPageCarousel', {ride: 'carousel',pause: 'hover',interval: 4200}).cycle();
-const introToast = Common.bootstrap.Toast.getOrCreateInstance($('#introToast'), {autohide: false});
+new Common.bootstrap.Carousel('#landingPageCarousel', { ride: 'carousel', pause: 'hover', interval: 4200 }).cycle();
+const introToast = Common.bootstrap.Toast.getOrCreateInstance($('#introToast'), { autohide: false });
 
-setTimeout(() => {introToast.show()}, 2000);
+setTimeout(() => introToast.show(), 2000);
 
 $(document).on('scroll resize', i =>  i.type === 'resize' ? Common.fnOnResize() : Common.fnOnScroll());
 $('#darkMode').on('click', i => Common.darkModeHandler(null, null, true, i.currentTarget.checked));
 $('#cpiContainer').on('scroll mousedown resize mousemove', i => cpiContainerScroll(i));
 $("#footerInject").replaceWith(Common.footer());
+
+$('[year]').on('click', i => {
+	var	yearClicked = i.currentTarget.childNodes[0].nodeValue;
+	$('#cpiDropdown').html(yearClicked);
+	$('[year]').removeAttr('hidden');
+	$(i.target).attr('hidden','true');
+	iconChanger('rankIcon',true);
+	printCpiResults(yearExtractor());
+	$('#cpiTextInput')[0].value = '';
+});
+
+$('#cpiTextInput').on('keyup', i => {
+	var array = yearExtractor()
+	var curVal = i.currentTarget.value
+	curVal = curVal.replace(" ","")
+	if (curVal.length >= 1){
+		let newArr =  array.filter(data => JSON.stringify(data).toLowerCase().indexOf(curVal.toLowerCase()) !== -1);
+		printCpiResults(newArr)
+	};
+});
+
+
 function cpiContainerScroll(i) {
 	if (i.type === 'scroll'){
 		let darkMode = localStorage.getItem('darkMode') === 'true' ? true : false;
@@ -39,7 +62,7 @@ function cpiContainerScroll(i) {
 };
 function tableSorter(col) {
 	$('#cpiContainer').animate({scrollTop: 0});
-	let perYearArr = yearExtractor();
+	var perYearArr = yearExtractor();
 	switch (col) {
 		case 'code':
 			iconChanger('countryCodeIcon');
@@ -73,7 +96,7 @@ function tableSorter(col) {
 function printCpiResults(arr){
 	let pushResults = $('#cpiList')
 	pushResults.html('')
-	arr.forEach((v,i) => {
+	arr.forEach(v => {
 		pushResults.append(`
 		<tr>
 			<td>${v.iso3}</td>
@@ -83,7 +106,7 @@ function printCpiResults(arr){
 			<td>${v.rank}</td>
 		</tr>
 		`);
-	})
+	});
 };
 function iconChanger (activeCol, numeric = false) {
 	const sortIcons = {
@@ -122,30 +145,9 @@ function iconChanger (activeCol, numeric = false) {
 function yearExtractor (){
 	const year = $('#cpiDropdown').text(); 
 	let newList = [];
-	cpi.forEach(i => {
-		if (i.year == year) newList.push(i);
-	});
+	cpi.forEach(i => { if (i.year == year) newList.push(i)});
 	let newerList = newList.filter(a => a.rank > 0)
 	newerList.sort((a,b) => a.rank < b.rank ? -1 : null)
 	return newerList
 };
 
-$('[year]').on('click', i => {
-	let	yearClicked = i.currentTarget.childNodes[0].nodeValue;
-	$('#cpiDropdown').html(yearClicked);
-	$('[year]').removeAttr('hidden');
-	$(i.target).attr('hidden','true');
-	iconChanger('rankIcon',true);
-	printCpiResults(yearExtractor());
-	$('#cpiTextInput')[0].value = '';
-});
-
-$('#cpiTextInput').on('keyup', i => {
-	let array = yearExtractor()
-	let curVal = i.currentTarget.value
-	curVal = curVal.replace(" ","")
-	if (curVal.length >= 1){
-		let newArr =  array.filter(data => JSON.stringify(data).toLowerCase().indexOf(curVal.toLowerCase()) !== -1);
-		printCpiResults(newArr)
-	};
-});

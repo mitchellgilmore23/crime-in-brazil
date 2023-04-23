@@ -304,13 +304,11 @@ img {
 	.ag-format-container {
 		width: 98%;
 	}
-
 	.ag-timeline-card_img {
 		height: auto;
 		width: auto;
 	}
 }
-
 @media only screen and (max-width: 639px) {
 	.ag-timeline_title {
 		font-size: 60px;
@@ -323,10 +321,6 @@ img {
 		font-size: 14px;
 	}
 }
-
-@media only screen and (max-width: 479px) {
-}
-
 @media (min-width: 768px) and (max-width: 979px) {
 	.ag-format-container {
 		width: 720px;
